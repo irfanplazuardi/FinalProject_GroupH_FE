@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import HomePage from "./pages/home_page";
+import Login from "./pages/login";
+import CreateAccount from "./pages/create_account";
 
 function App() {
   return (
@@ -8,6 +15,8 @@ function App() {
       <AppBody />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/create-account" element={<CreateAccount />} />
       </Routes>
     </Router>
   );
@@ -19,7 +28,9 @@ function AppBody() {
   const location = useLocation();
 
   useEffect(() => {
-    const { backgroundColor, backgroundImage } = getBackgroundStyles(location.pathname);
+    const { backgroundColor, backgroundImage } = getBackgroundStyles(
+      location.pathname
+    );
 
     document.body.style.backgroundColor = backgroundColor;
     document.body.style.backgroundImage = `url(${backgroundImage})`;
