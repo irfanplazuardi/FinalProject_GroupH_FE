@@ -8,6 +8,7 @@ import {
 import HomePage from "./pages/home_page";
 import Login from "./pages/login";
 import CreateAccount from "./pages/create_account";
+import Dashboard_page from "./pages/dashboard_page";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/dashboard" element={<Dashboard_page />} />
       </Routes>
     </Router>
   );
