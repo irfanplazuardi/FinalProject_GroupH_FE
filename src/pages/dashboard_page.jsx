@@ -149,7 +149,7 @@ export default function Dashboard() {
           </div>
           <div className="mb-4 flex justify-center rounded-3xl col-start-4 row-span-2 bg-[#F1F1F1]">
             <div className="grid grid-rows-3"></div>
-            <div className="flex jusstify-between w-full mb-40 p-5">
+            <div className="flex justify-between w-full mb-40 p-5">
               <h2>Schedules</h2>
               <h4>see all</h4>
             </div>
