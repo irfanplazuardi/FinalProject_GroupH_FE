@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import backgroundImage from "../assets/astronaut.jpg";
-import VogueSchoolLogoLarge from "../common/vogue_school_logo/logo_large";
-import CustomInput from "../common/custom_input_label";
-import ButtonStyle from "../common/button_new";
+import VogueSchoolLogoLarge from "../components/logo_large";
+import CustomInput from "../components/custom_input_label";
+import ButtonStyle from "../components/button";
 
 const Login = () => {
   const [formData, setFormData] = useState({

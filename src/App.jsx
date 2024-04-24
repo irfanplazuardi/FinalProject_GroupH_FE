@@ -12,7 +12,7 @@ import CreateAccount from "./pages/create_account";
 function App() {
   return (
     <Router>
-      <AppBody /> {/* Include the AppBody component within the Router */}
+      <AppBody />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
@@ -33,7 +33,7 @@ function AppBody() {
     );
 
     document.body.style.backgroundColor = backgroundColor;
-    document.body.style.backgroundImage = `url(${backgroundImage})`; // Enclose backgroundImage value in quotes and use backticks
+    document.body.style.backgroundImage = `url(${backgroundImage})`;
 
     return () => {
       document.body.style.backgroundColor = "";
@@ -44,7 +44,7 @@ function AppBody() {
   const getBackgroundStyles = (pathname) => {
     switch (pathname) {
       case "/":
-        return { backgroundColor: "#D9D9D9", backgroundImage: "none" }; // Fixed the backgroundImage value
+        return { backgroundColor: "#D9D9D9", backgroundImage: `none` };
       case "/login":
         return { backgroundColor: "#f2f2f2", backgroundImage: "none" };
       default:
