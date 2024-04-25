@@ -9,6 +9,7 @@ import HomePage from "./pages/home_page";
 import Login from "./pages/login";
 import CreateAccount from "./pages/create_account";
 import Dashboard_page from "./pages/dashboard_page";
+import ProfilePage from "./pages/profile_page";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/dashboard" element={<Dashboard_page />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );

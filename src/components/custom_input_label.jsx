@@ -1,6 +1,7 @@
 import React from "react";
 
-const CustomInput = ({ label, ...rest }) => {
+const CustomInput = ({ label, heightOfInput, ...rest }) => {
+  const DefaultHeightInputBox = heightOfInput || "18";
   return (
     <div className="relative">
       <label
@@ -10,7 +11,7 @@ const CustomInput = ({ label, ...rest }) => {
         {label}
       </label>
       <input
-        className="block w-full border border-gray-300 rounded-md py-2 px-4 mt-2 bg-transparent"
+        className={`block w-full box-border h-${DefaultHeightInputBox} border border-gray-700 rounded-md py-2 px-4 mt-2 bg-transparent`}
         {...rest}
       />
     </div>

@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/logo";
-import VogueSchoolLogoLarge from "../assets/VogueSchoolLogoLarge";
+import VogueSchoolLogoLarge from "./logo_large";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
@@ -31,7 +30,12 @@ export default function Sidebar() {
             className="flex items-center ps-2.5 mb-5"
             onClick={() => navigate("/dashboard")}
           >
-            <VogueSchoolLogoLarge />
+            <VogueSchoolLogoLarge
+              fontSize="4xl"
+              fontSizeSchool="xl"
+              fontSizeBeyond="sm"
+              marginSchool="0"
+            />
           </button>
           <ul className="space-y-2 font-medium">
             <li>

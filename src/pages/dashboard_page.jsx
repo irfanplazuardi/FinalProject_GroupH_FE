@@ -1,38 +1,22 @@
-import Sidebar from "../componets/sidebar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInbox } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import Sidebar from "../components/sidebar";
+import ButtonStyle from "../components/button";
+import AnnouncementPopup from "./pop_up_announcement";
+import DashboardSearchAndProfileBar from "../components/dashboard_search_profile";
 
 export default function Dashboard() {
-  const mail_icon = <FontAwesomeIcon icon={faInbox} />;
+  const [isPopupOpen, setPopupOpen] = useState(false);
+
+  const togglePopup = () => {
+    setPopupOpen(!isPopupOpen);
+  };
+
   return (
     <>
       <Sidebar />
+      <DashboardSearchAndProfileBar />
 
       <div className="h-screen p-4 sm:ml-64 bg-[#D9D9D9]">
-        <div className="p-4 mb-4 flex justify-between items-center bg-white rounded-full ">
-          <div className="ml-4 flex w-1/4 bg-[#D9D9D9] rounded-full">
-            <input
-              type="text"
-              name="search_bar"
-              id="search_bar"
-              placeholder="Search"
-              className="pl-4 pt-2 pb-2 w-full focus:outline-none bg-transparent "
-            />
-          </div>
-          <div className="flex items-end">
-            <h2 className="font-bold text-3xl">Hello, Conan!</h2>
-            <h2 className="items-end">(elementary student)</h2>
-          </div>
-          <div className="flex items-center gap-5">
-            {mail_icon}
-            <img
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              alt="user photo"
-              className="w-10 h-10 rounded-full"
-            />
-          </div>
-        </div>
-
         <div className="grid grid-cols-4 grid-rows-2 gap-4 mb-4">
           <div className="flex justify-center rounded-3xl col-span-3 row-span-2 bg-white ">
             <div className="grid grid-rows-2 ">
@@ -140,8 +124,8 @@ export default function Dashboard() {
             <div className="flex items-center justify-center h-12 rounded-3xl bg-[#F1F1F1]">
               <h2>Make New Course</h2>
             </div>
-            <div className="flex items-center justify-center h-12 rounded-3xl bg-[#F1F1F1]">
-              <h2>New Announcement</h2>
+            <div className="flex items-center justify-center h-12 rounded-3xl">
+              <ButtonStyle onClick={togglePopup}>New Announcement</ButtonStyle>
             </div>
             <div className="flex items-center justify-center h-12 rounded-3xl bg-[#F1F1F1]">
               <h2>Student / Teacher List</h2>
@@ -157,6 +141,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <AnnouncementPopup isOpen={isPopupOpen} onClose={togglePopup} />
     </>
   );
 }
