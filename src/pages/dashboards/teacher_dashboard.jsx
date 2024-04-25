@@ -1,4 +1,4 @@
-import Sidebar from "../componets/sidebar";
+import Sidebar from "../../components/sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInbox } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,13 +11,7 @@ export default function Dashboard() {
       <div className="h-screen p-4 sm:ml-64 bg-[#D9D9D9]">
         <div className="p-4 mb-4 flex justify-between items-center bg-white rounded-full ">
           <div className="ml-4 flex w-1/4 bg-[#D9D9D9] rounded-full">
-            <input
-              type="text"
-              name="search_bar"
-              id="search_bar"
-              placeholder="Search"
-              className="pl-4 pt-2 pb-2 w-full focus:outline-none bg-transparent "
-            />
+            <input type="text" name="search_bar" id="search_bar" placeholder="Search" className="pl-4 pt-2 pb-2 w-full focus:outline-none bg-transparent " />
           </div>
           <div className="flex items-end">
             <h2 className="font-bold text-3xl">Hello, Conan!</h2>
@@ -25,11 +19,7 @@ export default function Dashboard() {
           </div>
           <div className="flex items-center gap-5">
             {mail_icon}
-            <img
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              alt="user photo"
-              className="w-10 h-10 rounded-full"
-            />
+            <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo" className="w-10 h-10 rounded-full" />
           </div>
         </div>
 
@@ -43,20 +33,8 @@ export default function Dashboard() {
                 <div className="w-full">
                   <div className="flex w-auto items-center justify-center h-24 rounded bg-[#D9D9D9]">
                     <p className="text-2xl text-gray-400 dark:text-gray-500">
-                      <svg
-                        className="w-3.5 h-3.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 18 18"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 1v16M1 9h16"
-                        />
+                      <svg className="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16" />
                       </svg>
                     </p>
                   </div>
@@ -65,20 +43,8 @@ export default function Dashboard() {
                 <div className="w-full ">
                   <div className="flex w-auto items-center justify-center h-24 rounded bg-[#D9D9D9]">
                     <p className="text-2xl text-gray-400 dark:text-gray-500">
-                      <svg
-                        className="w-3.5 h-3.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 18 18"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 1v16M1 9h16"
-                        />
+                      <svg className="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16" />
                       </svg>
                     </p>
                   </div>
@@ -89,20 +55,8 @@ export default function Dashboard() {
                 <div className="w-full">
                   <div className="flex items-center justify-center h-24 rounded bg-[#D9D9D9]">
                     <p className="text-2xl text-gray-400 dark:text-gray-500">
-                      <svg
-                        className="w-3.5 h-3.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 18 18"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 1v16M1 9h16"
-                        />
+                      <svg className="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16" />
                       </svg>
                     </p>
                   </div>
@@ -111,20 +65,8 @@ export default function Dashboard() {
                 <div className="w-full">
                   <div className="flex items-center justify-center h-24 rounded bg-[#D9D9D9]">
                     <p className="text-2xl text-gray-400 dark:text-gray-500">
-                      <svg
-                        className="w-3.5 h-3.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 18 18"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 1v16M1 9h16"
-                        />
+                      <svg className="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16" />
                       </svg>
                     </p>
                   </div>
