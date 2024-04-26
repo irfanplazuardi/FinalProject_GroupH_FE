@@ -1,37 +1,13 @@
 import Sidebar from "../../components/sidebar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInbox } from "@fortawesome/free-solid-svg-icons";
+import DashboardNavbar from "../../components/dashboard_navbar";
 
 export default function Dashboard() {
-  const mail_icon = <FontAwesomeIcon icon={faInbox} />;
   return (
     <>
       <Sidebar />
 
       <div className="h-screen p-4 sm:ml-64 bg-[#D9D9D9]">
-        <div className="p-4 mb-4 flex justify-between items-center bg-white rounded-full ">
-          <div className="ml-1 flex w-1/3 bg-[#D9D9D9] rounded-full">
-            <input
-              type="text"
-              name="search_bar"
-              id="search_bar"
-              placeholder="Search"
-              className="pl-4 pt-2 pb-2 w-full focus:outline-none bg-transparent "
-            />
-          </div>
-          <div className="flex items-end">
-            <h2 className="font-bold text-3xl">Hello, Conan!</h2>
-            <h2 className="items-end">(elementary student)</h2>
-          </div>
-          <div className="flex items-center gap-5">
-            {mail_icon}
-            <img
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              alt="user photo"
-              className="w-10 h-10 rounded-full"
-            />
-          </div>
-        </div>
+        <DashboardNavbar />
 
         <div className="grid grid-cols-4 grid-rows-2 gap-4 mb-4">
           <div className="flex justify-center rounded-3xl col-span-3 row-span-2 bg-white ">
@@ -135,7 +111,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          
+
           <div className="mb-4 rounded-3xl col-start-4 row-span-1 grid-rows-3 bg-[#F1F1F1]">
             <div className="flex justify-between w-full p-3 mt-1">
               <h2 className="pl-3">Progress</h2>
@@ -159,7 +135,6 @@ export default function Dashboard() {
               </div>
               <h2 className="pr-4">100</h2>
             </div>
-            
           </div>
           <div className="mb-4 rounded-3xl col-start-4 row-span-2 grid-rows-3 bg-[#F1F1F1]">
             <div className="flex justify-between w-full p-3 mt-1">
