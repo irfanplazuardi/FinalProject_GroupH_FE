@@ -18,11 +18,11 @@ const VogueSchoolLogoLarge = ({
       <div
         className={`flex items-center justify-center h-10 text-${defaultColor} uppercase font-bold text-${defaultFontSize} tracking-widest`}
       >
-        <div class="mr-1">V</div>
-        <div class="mr-1">O</div>
-        <div class="mr-1">G</div>
-        <div class="mr-1">U</div>
-        <div class="mr-1">E</div>
+        <div className="mr-1">V</div>
+        <div className="mr-1">O</div>
+        <div className="mr-1">G</div>
+        <div className="mr-1">U</div>
+        <div className="mr-1">E</div>
       </div>
       <div
         className={`text-${defaultFontSizeSchool} font-medium text-${defaultColor} rounded-full mt-${defaultMargin} px-2 py-1`}

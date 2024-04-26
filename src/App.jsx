@@ -8,7 +8,7 @@ import {
 import HomePage from "./pages/home_page";
 import Login from "./pages/login";
 import CreateAccount from "./pages/create_account";
-import Dashboard_page from "./pages/dashboard_page";
+import Dashboard_page from "./pages/dashboards/teacher_dashboard";
 import ProfilePage from "./pages/profile_page";
 
 function App() {

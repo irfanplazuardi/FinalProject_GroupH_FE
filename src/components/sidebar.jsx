@@ -30,12 +30,7 @@ export default function Sidebar() {
             className="flex items-center ps-2.5 mb-5"
             onClick={() => navigate("/dashboard")}
           >
-            <VogueSchoolLogoLarge
-              fontSize="4xl"
-              fontSizeSchool="xl"
-              fontSizeBeyond="sm"
-              marginSchool="0"
-            />
+            <VogueSchoolLogoLarge />
           </button>
           <ul className="space-y-2 font-medium">
             <li>
