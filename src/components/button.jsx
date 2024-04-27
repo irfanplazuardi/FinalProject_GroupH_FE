@@ -1,10 +1,11 @@
 import React from "react";
 
-const ButtonStyle = ({ children, onClick, className }) => {
+const ButtonStyle = ({ children, onClick, widthButton }) => {
+  const DefaultWidthButton = widthButton || "full";
   return (
     <button
       onClick={onClick}
-      className={`w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 ${className}`}
+      className={`w-${DefaultWidthButton} bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800`}
     >
       {children}
     </button>

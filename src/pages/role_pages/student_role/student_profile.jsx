@@ -26,25 +26,25 @@ const StudentProfile = () => {
             <div>January 1, 1997</div>
           </div>
           <div className="m-7 bg-white p-4 rounded-md flex justify-between items-center">
-            <div>
+            <div className="gap-10">
               <div className="font-bold text-lg mb-2">Phone Number:</div>
               <div>+628222334456</div>
             </div>
-            <ButtonStyle className={`w-32`}>Change</ButtonStyle>
+            <ButtonStyle widthButton="32">Change</ButtonStyle>
           </div>
           <div className="m-7 bg-white p-4 rounded-md flex justify-between items-center">
             <div>
               <div className="font-bold text-lg mb-2">Email:</div>
               <div>conankun@gmail.com</div>
             </div>
-            <ButtonStyle className={`w-32`}>Change</ButtonStyle>
+            <ButtonStyle widthButton="32">Change</ButtonStyle>
           </div>
           <div className="m-7 bg-white p-4 rounded-md flex justify-between items-center">
             <div>
               <div className="font-bold text-lg mb-2">Password:</div>
               <div>********</div>
             </div>
-            <ButtonStyle className={`w-32`}>Change</ButtonStyle>
+            <ButtonStyle widthButton="32">Change</ButtonStyle>
           </div>
         </div>
       </div>
