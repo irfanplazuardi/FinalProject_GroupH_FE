@@ -1,9 +1,11 @@
+import VogueSchoolLogoLarge from "./logo_large";
+
 const HomeNavbar = () => {
   return (
     <nav>
       <div className="flex justify-between items-baseline w-11/12 m-auto mx-20 my-5">
         <div className="flex items-center">
-          <img src="src/assets/svg_image/Vogue_school_logo.svg" alt="logo" />
+          <VogueSchoolLogoLarge fontSize="5xl" color="black" />
         </div>
         <div className="flex items-center space-x-10">
           <a href="#" className="hover:text-yellow-400 text-xl">
