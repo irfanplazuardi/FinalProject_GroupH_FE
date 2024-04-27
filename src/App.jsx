@@ -8,8 +8,9 @@ import {
 import HomePage from "./pages/home_page";
 import Login from "./pages/login";
 import CreateAccount from "./pages/create_account";
-import Dashboard_page from "./pages/dashboards/teacher_dashboard";
-import ProfilePage from "./pages/profile_page";
+import DashboardTeacher from "./pages/dashboards/teacher_dashboard";
+import DashboardStudent from "./pages/dashboards/student_dashboard";
+import StudentProfile from "./pages/role_pages/student_role/student_profile";
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/dashboard" element={<Dashboard_page />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/dashboard" element={<DashboardStudent />} />
+        <Route path="/dashboard/profile" element={<StudentProfile />} />
       </Routes>
     </Router>
   );
