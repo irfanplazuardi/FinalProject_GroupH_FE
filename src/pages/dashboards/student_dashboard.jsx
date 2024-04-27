@@ -1,5 +1,5 @@
 import Sidebar from "../../components/sidebar";
-import DashboardSearchAndProfileBar from "../../components/dashboard_search_profile";
+import DashboardNavbar from "../../components/dashboard_navbar";
 
 export default function Dashboard() {
   return (
@@ -7,7 +7,7 @@ export default function Dashboard() {
       <Sidebar />
 
       <div className="h-screen p-4 sm:ml-64 bg-[#D9D9D9]">
-        <DashboardSearchAndProfileBar />
+        <DashboardNavbar />
 
         <div className="grid grid-cols-4 grid-rows-2 gap-4 mb-4">
           <div className="flex justify-center rounded-3xl col-span-3 row-span-2 bg-white ">
