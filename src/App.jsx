@@ -22,6 +22,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/dashboard" element={<DashboardStudent />} />
+        {/* "/dashboard/teacher" cuman mau cek rendering teacher dashboard */}
+        <Route path="/dashboard/teacher" element={<DashboardTeacher />} />
         <Route path="/dashboard/material" element={<StudentMaterial />} />
         <Route path="/dashboard/profile" element={<StudentProfile />} />
       </Routes>

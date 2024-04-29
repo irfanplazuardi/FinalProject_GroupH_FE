@@ -1,9 +1,18 @@
+import React, { useState } from "react";
 import Sidebar from "../../components/sidebar";
 import DashboardNavbar from "../../components/dashboard_navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInbox } from "@fortawesome/free-solid-svg-icons";
+import ButtonStyle from "../../components/button";
+import PopUpWindow from "../../components/pop_up_window";
 
 export default function Dashboard() {
+  const [isAnnouncementOpen, setAnnouncementOpen] = useState(false);
+  const handleAnnouncementSubmit = (formData) => {
+    console.log("Announcement Submitted", formData);
+    setAnnouncementOpen(false);
+  };
+  const announcementFields = [
+    { name: "announcement", label: "Announcement", type: "text" },
+  ];
   return (
     <>
       <Sidebar />
@@ -114,17 +123,19 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="grid grid-rows-4 gap-4 mb-4">
-            <div className="flex items-center justify-center h-12 rounded-3xl bg-[#F1F1F1]">
-              <h2>Student Progress</h2>
+            <div className="flex items-center justify-center h-12 rounded-3xl">
+              <ButtonStyle>Student Progress</ButtonStyle>
             </div>
-            <div className="flex items-center justify-center h-12 rounded-3xl bg-[#F1F1F1]">
-              <h2>Make New Course</h2>
+            <div className="flex items-center justify-center h-12 rounded-3xl">
+              <ButtonStyle>Make New Course</ButtonStyle>
             </div>
-            <div className="flex items-center justify-center h-12 rounded-3xl bg-[#F1F1F1]">
-              <h2>New Announcement</h2>
+            <div className="flex items-center justify-center h-12 rounded-3xl">
+              <ButtonStyle onClick={() => setAnnouncementOpen(true)}>
+                New Announcement
+              </ButtonStyle>
             </div>
-            <div className="flex items-center justify-center h-12 rounded-3xl bg-[#F1F1F1]">
-              <h2>Student / Teacher List</h2>
+            <div className="flex items-center justify-center h-12 rounded-3xl">
+              <ButtonStyle>Student / Teacher List</ButtonStyle>
             </div>
           </div>
           <div className="mb-4 rounded-3xl col-start-4 row-span-2 grid-rows-3 bg-[#F1F1F1]">
@@ -156,6 +167,15 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <PopUpWindow
+        isOpen={isAnnouncementOpen}
+        onClose={() => setAnnouncementOpen(false)}
+        onSubmit={handleAnnouncementSubmit}
+        title="New Announcement"
+        validationText="Are you sure want to announce this?"
+        buttonLeft="Yes"
+        fields={announcementFields}
+      />
     </>
   );
 }
