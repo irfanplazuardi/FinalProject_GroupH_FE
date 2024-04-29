@@ -1,11 +1,11 @@
-import Sidebar from "../../components/sidebar";
-import Container from "../../components/container";
-import Navbar from "../../components/navbar";
-import Progress from "../../components/progress";
-import Schedule from "../../components/schedule";
+import Sidebar from "../../../components/sidebar";
+import Container from "../../../components/container";
+import Navbar from "../../../components/navbar";
+import ControllerButton from "../../../components/controller_button";
+import Schedule from "../../../components/schedule";
 import { Outlet } from "react-router-dom";
 
-export default function StudentDashboard() {
+export default function TeacherController() {
   return (
     <>
       <Sidebar />
@@ -17,7 +17,7 @@ export default function StudentDashboard() {
           <Container className="flex justify-center rounded-3xl col-span-3 row-span-2 bg-white ">
             <Outlet />
           </Container>
-          <Progress />
+          <ControllerButton />
           <Schedule />
         </Container>
       </Container>
