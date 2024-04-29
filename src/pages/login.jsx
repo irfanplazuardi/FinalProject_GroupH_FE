@@ -3,7 +3,7 @@ import backgroundImage from "../assets/astronaut.jpg";
 import VogueSchoolLogoLarge from "../components/logo_large";
 import CustomInput from "../components/custom_input_label";
 import ButtonStyle from "../components/button";
-
+import { Link } from "react-router-dom";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -59,8 +59,7 @@ const Login = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         width: "100%",
-      }}
-    >
+      }}>
       <div>
         <VogueSchoolLogoLarge />
         <div className="w-full max-w-md bg-white bg-opacity-75 p-8 rounded-2xl shadow-lg">
@@ -93,9 +92,9 @@ const Login = () => {
           </form>
           <p className="mt-4 text-center">
             Don't have an account?{" "}
-            <a href="/create-account" className="text-blue-500">
+            <Link to="/create-account" className="text-blue-500">
               Create account now
-            </a>
+            </Link>
           </p>
         </div>
       </div>
