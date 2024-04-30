@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const HomeNavbar = () => {
   return (
     <nav>
-      <div className="flex justify-between items-baseline w-11/12 mx-auto pt-5">
+      <div className="flex justify-between items-baseline w-11/12 mx-auto relative">
         <div className="flex items-center">
           <VogueSchoolLogoLarge fontSize="5xl" color="black" />
         </div>
-        <div className="flex items-center space-x-10">
+        <div className="flex absolute bottom-5 right-0 gap-10">
           <Link to="#" className="hover:text-yellow-400 text-xl">
             Course
           </Link>
