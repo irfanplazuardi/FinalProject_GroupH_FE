@@ -1,6 +1,6 @@
 import React from "react";
 
-const VogueSchoolLogoLarge = () => {
+const VogueSchoolLogoSmall = () => {
   return (
     <div className="text-center">
       <div className="flex items-center justify-center h-10 text-white uppercase font-bold text-3xl tracking-widest">
@@ -15,4 +15,4 @@ const VogueSchoolLogoLarge = () => {
   );
 };
 
-export default VogueSchoolLogoLarge;
+export default VogueSchoolLogoSmall;
