@@ -4,7 +4,7 @@ import Carousel from "../components/carousel";
 import MultipleCard from "../components/multiple_card";
 const Home_page = () => {
   return (
-    <>
+    <div className="min-h-screen bg-[#d9d9d9] ">
       <HomeNavbar />
       <Carousel />
       <div>
@@ -76,7 +76,7 @@ const Home_page = () => {
         <h3 className="text-2xl text-center mt-7">in association with RevoU</h3>
         <h3 className="text-2xl text-center ">© group H 2024</h3>
       </div>
-    </>
+    </div>
   );
 };
 

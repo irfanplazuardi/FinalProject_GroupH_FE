@@ -1,14 +1,29 @@
-import React, { useState } from "react";
-import Sidebar from "../../../components/sidebar";
-import ButtonStyle from "../../../components/button";
-import PopUpWindow from "../../../components/pop_up_window";
+import React, { useState, useEffect } from "react";
+import ButtonStyle from "./button";
+import PopUpWindow from "./pop_up_window";
 
-const StudentProfile = () => {
+const Profile = () => {
   const [isSelectedField, setSelectedField] = useState(null);
+  const [profilePicture, setProfilePicture] = useState("");
+
+  useEffect(() => {
+    const storedProfilePicture = localStorage.getItem("profilePicture");
+    if (storedProfilePicture) {
+      setProfilePicture(storedProfilePicture);
+    }
+  }, []);
+
   const handleSubmit = (formData) => {
     console.log("form submitted", formData);
+    if (formData.picture) {
+      const pictureURL = URL.createObjectURL(formData.picture);
+      localStorage.setItem("profilePicture", pictureURL);
+      setProfilePicture(pictureURL);
+    }
     setSelectedField(null);
   };
+
+  const changePicture = [{ name: "picture", label: "Upload", type: "file" }];
 
   const phoneNumberField = [
     { name: "phoneNumber", label: "New Phone Number", type: "text" },
@@ -22,30 +37,31 @@ const StudentProfile = () => {
 
   return (
     <>
-      <Sidebar />
-
-      <div className="flex flex-col items-center justify-center h-full ml-64 p-8">
+      <div className="flex flex-col items-center justify-center h-full py-8">
         <h2 className="font-bold text-3xl mb-5">Profile</h2>
         <div className="p-7 bg-[#D9D9D9] rounded-lg flex items-center justify-center flex-col">
           <img
-            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+            src={profilePicture}
             alt="user photo"
             className="w-36 h-36 rounded-full mb-4"
           />
-          <ButtonStyle className="w-28 mt-4" onClick={() => setSelectedField()}>
+          <ButtonStyle
+            className="w-28 mt-4"
+            onClick={() => setSelectedField("picture")}
+          >
             Change
           </ButtonStyle>
         </div>
         <div className="m-5 bg-[#D9D9D9] w-full rounded-xl">
-          <div className="m-7 bg-white p-4 rounded-md">
+          <div className="m-4 bg-white p-4 rounded-md">
             <div className="font-bold text-lg mb-2">Name of Student</div>
             <div>Conan Kun</div>
           </div>
-          <div className="m-7 bg-white p-4 rounded-md">
+          <div className="m-4 bg-white p-4 rounded-md">
             <div className="font-bold text-lg mb-2">Birthday:</div>
             <div>January 1, 1997</div>
           </div>
-          <div className="m-7 bg-white p-4 rounded-md flex justify-between items-center">
+          <div className="m-4 bg-white p-4 rounded-md flex justify-between items-center">
             <div className="gap-10">
               <div className="font-bold text-lg mb-2">Phone Number:</div>
               <div>+628222334456</div>
@@ -57,7 +73,7 @@ const StudentProfile = () => {
               Change
             </ButtonStyle>
           </div>
-          <div className="m-7 bg-white p-4 rounded-md flex justify-between items-center">
+          <div className="m-4 bg-white p-4 rounded-md flex justify-between items-center">
             <div>
               <div className="font-bold text-lg mb-2">Email:</div>
               <div>conankun@gmail.com</div>
@@ -69,7 +85,7 @@ const StudentProfile = () => {
               Change
             </ButtonStyle>
           </div>
-          <div className="m-7 bg-white p-4 rounded-md flex justify-between items-center">
+          <div className="m-4 bg-white p-4 rounded-md flex justify-between items-center">
             <div>
               <div className="font-bold text-lg mb-2">Password:</div>
               <div>********</div>
@@ -83,6 +99,17 @@ const StudentProfile = () => {
           </div>
         </div>
       </div>
+      {isSelectedField === "picture" && (
+        <PopUpWindow
+          isOpen={true}
+          onClose={() => setSelectedField(null)}
+          onSubmit={handleSubmit}
+          title="Change Profile Picture"
+          validationText="Are you sure want to change your profile picture?"
+          buttonLeft="Yes"
+          fields={changePicture}
+        />
+      )}
       {isSelectedField === "phoneNumber" && (
         <PopUpWindow
           isOpen={true}
@@ -120,4 +147,4 @@ const StudentProfile = () => {
   );
 };
 
-export default StudentProfile;
+export default Profile;
