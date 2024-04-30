@@ -1,5 +1,10 @@
 import { useParams, Navigate } from "react-router-dom";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import HomePage from "./pages/home_page";
 import Login from "./pages/login";
 import CreateAccount from "./pages/create_account";
@@ -11,6 +16,7 @@ import Announcement from "./components/anouncement";
 import TestPage from "./pages/test";
 import ErrorPage from "./pages/error-page";
 import CourseTable from "./components/tables/course_table";
+import Profile from "./components/profile";
 
 const DashboardRouter = () => {
   const { role } = useParams();
@@ -18,7 +24,14 @@ const DashboardRouter = () => {
 
   switch (role) {
     case "teacher":
-      if (location.pathname.includes("create-course" || "student-pogress" || "new-announcement" || "member-list")) {
+      if (
+        location.pathname.includes(
+          "create-course" ||
+            "student-pogress" ||
+            "new-announcement" ||
+            "member-list"
+        )
+      ) {
         return <TableDashboard />;
       }
       return <TeacherDashboard />;
@@ -38,9 +51,9 @@ function App() {
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/dashboard/:role" element={<DashboardRouter />}>
           <Route path="course" element={<Course />} />
-          <Route path="anouncement" element={<Announcement />} />
-          {/* <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} /> */}
+          <Route path="announcement" element={<Announcement />} />
+          <Route path="profile" element={<Profile />} />
+          {/* <Route path="settings" element={<Settings />} /> */}
           <Route path="create-course" element={<CourseTable />} />
           {/* <Route path="student-pogress" element={<ProgressTable />} />
           <Route path="new-announcement" element={<AnouncementTable />} />
