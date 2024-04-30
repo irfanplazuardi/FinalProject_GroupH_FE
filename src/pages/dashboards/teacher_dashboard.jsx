@@ -5,6 +5,7 @@ import ControllerButton from "../../components/controller_button";
 import Schedule from "../../components/schedule";
 import { Outlet } from "react-router-dom";
 
+
 export default function TeacherDashboard() {
   return (
     <>
