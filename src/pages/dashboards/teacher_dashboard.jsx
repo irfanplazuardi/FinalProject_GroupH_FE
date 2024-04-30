@@ -1,10 +1,7 @@
 import Sidebar from "../../components/sidebar";
 import DashboardNavbar from "../../components/dashboard_navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInbox } from "@fortawesome/free-solid-svg-icons";
 
 export default function Dashboard() {
-  const mail_icon = <FontAwesomeIcon icon={faInbox} />;
   return (
     <>
       <Sidebar />

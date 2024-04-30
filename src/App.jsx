@@ -16,9 +16,13 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/dashboard" element={<DashboardStudent />} />
+        {/* Student */}
+        {/* <Route path="/dashboard" element={<DashboardStudent />} />
         <Route path="/dashboard/material" element={<StudentMaterial />} />
-        <Route path="/dashboard/material/additional" element={<StudentAdditional />} />
+        <Route path="/dashboard/material/additional" element={<StudentAdditional />} /> */}
+        {/* teacher */}
+        <Route path="/dashboard" element={<DashboardTeacher />} />
+
       </Routes>
     </Router>
   );
