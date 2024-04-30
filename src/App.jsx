@@ -1,60 +1,48 @@
-import React, { useEffect } from "react";
+import { useParams, Navigate } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "./pages/home_page";
 import Login from "./pages/login";
 import CreateAccount from "./pages/create_account";
-import DashboardTeacher from "./pages/dashboards/teacher_dashboard";
-import DashboardStudent from "./pages/dashboards/student_dashboard";
-import StudentMaterial from "./pages/student_controller/student_material";
-import StudentAdditional from "./pages/student_controller/student_addition"
+import TeacherDashboard from "./pages/dashboards/teacher_dashboard";
+import StudentDashboard from "./pages/dashboards/student_dashboard";
+import Course from "./components/course";
+import Announcement from "./components/anouncement";
+import TestPage from "./pages/test";
+import ErrorPage from "./pages/error-page";
+
+const DashboardRouter = () => {
+  const { role } = useParams();
+  switch (role) {
+    case "teacher":
+      return <TeacherDashboard />;
+    case "student":
+      return <StudentDashboard />;
+    default:
+      return <Navigate to="/login" />;
+  }
+};
 
 function App() {
   return (
     <Router>
-      <AppBody />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
-        {/* Student */}
-        {/* <Route path="/dashboard" element={<DashboardStudent />} />
-        <Route path="/dashboard/material" element={<StudentMaterial />} />
-        <Route path="/dashboard/material/additional" element={<StudentAdditional />} /> */}
-        {/* teacher */}
-        <Route path="/dashboard" element={<DashboardTeacher />} />
-
+        <Route path="/dashboard/:role" element={<DashboardRouter />}>
+          <Route path="course" element={<Course />} />
+          <Route path="anouncement" element={<Announcement />} />
+          {/* <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} /> */}
+        </Route>
+        {/* <Route path="/dashboard/teacher" element={<HomePage />}>
+          <Route path="create-course" element={<Course />} />
+        </Route> */}
+        <Route path="/testenv" element={<TestPage />}></Route>
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-function AppBody() {
-  const location = useLocation();
-
-  useEffect(() => {
-    const { backgroundColor, backgroundImage } = getBackgroundStyles(location.pathname);
-
-    document.body.style.backgroundColor = backgroundColor;
-    document.body.style.backgroundImage = `url(${backgroundImage})`;
-
-    return () => {
-      document.body.style.backgroundColor = "";
-      document.body.style.backgroundImage = "";
-    };
-  }, [location.pathname]);
-
-  const getBackgroundStyles = (pathname) => {
-    switch (pathname) {
-      case "/":
-        return { backgroundColor: "#D9D9D9", backgroundImage: `none` };
-      case "/login":
-        return { backgroundColor: "#f2f2f2", backgroundImage: "none" };
-      default:
-        return { backgroundColor: "#f2f2f2", backgroundImage: "none" };
-    }
-  };
-
-  return null;
-}
