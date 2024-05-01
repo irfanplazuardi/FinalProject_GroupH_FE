@@ -13,18 +13,18 @@ const ControllerButton = () => {
   ];
   return (
     <div className="grid grid-rows-4 gap-4 mb-4">
-      <div className="flex items-center justify-center h-12 rounded-3xl">
+      <div className="flex items-center justify-center h-12 lg:text-sm xl:text-xl rounded-3xl">
         <ButtonStyle>Student Progress</ButtonStyle>
       </div>
-      <div className="flex items-center justify-center h-12 rounded-3x">
+      <div className="flex items-center justify-center h-12 lg:text-sm xl:text-xl rounded-3x">
         <ButtonStyle>Make New Course</ButtonStyle>
       </div>
-      <div className="flex items-center justify-center h-12 rounded-3xl">
+      <div className="flex items-center justify-center h-12 lg:text-sm xl:text-xl rounded-3xl">
         <ButtonStyle onClick={() => setAnnouncementOpen(true)}>
           New Announcement
         </ButtonStyle>
       </div>
-      <div className="flex items-center justify-center h-12 rounded-3xl">
+      <div className="flex items-center justify-center h-12 lg:text-sm xl:text-xl rounded-3xl">
         <ButtonStyle>Student / Teacher List</ButtonStyle>
       </div>
       <PopUpWindowUpdate
