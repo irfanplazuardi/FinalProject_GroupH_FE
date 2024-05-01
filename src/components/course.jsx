@@ -4,8 +4,8 @@ import Container from "./container";
 const Course = () => {
   const subjects = ["Math", "Science", "History", "English"];
   return (
-    <Container className="grid-rows-2">
-      <Container className="mr-[500px] pr-10">
+    <Container className="grid-rows-2 ">
+      <Container className="lg:mr-[50vh] xl:mr-[70vh] pr-10">
         <h2 className="font-bold w-full pr-[120px] pt-5">All Course</h2>
       </Container>
       <Container className="grid grid-cols-2 gap-4 mt-10 mb-5">
