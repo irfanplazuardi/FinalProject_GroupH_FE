@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ButtonStyle from "./button";
-import PopUpWindow from "./pop_up_window";
+import PopUpWindow from "./pop_up_window/pop_up_window";
 
 const Profile = () => {
   const [isSelectedField, setSelectedField] = useState(null);

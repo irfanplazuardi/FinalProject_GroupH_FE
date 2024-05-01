@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "./container";
 import ButtonStyle from "./button";
-import PopUpWindow from "./pop_up_window";
+import PopUpWindowUpdate from "./pop_up_window/update_pop_up_window";
 
 const Announcement = () => {
   // Dummy data for demonstration
@@ -84,7 +84,7 @@ const Announcement = () => {
               </div>
             </div>
             {isSelectedField === "update" && (
-              <PopUpWindow
+              <PopUpWindowUpdate
                 isOpen={true}
                 onClose={() => setSelectedField(null)}
                 onSubmit={handleSubmit}
@@ -95,7 +95,7 @@ const Announcement = () => {
               />
             )}
             {isSelectedAnnouncement && (
-              <PopUpWindow
+              <PopUpWindowUpdate
                 isOpen={true}
                 onClose={() => setSelectedAnnouncement(null)}
                 onSubmit={handleConfirmDelete}

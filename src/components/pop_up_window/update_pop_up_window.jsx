@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ButtonStyle from "./button";
-import CustomInput from "./custom_input_label";
+import ButtonStyle from "../button";
+import CustomInputUpdate from "../input_label/update_custom_input_label";
 
-const PopUpWindow = ({
+const PopUpWindowUpdate = ({
   isOpen,
   onClose,
   onSubmit,
@@ -59,7 +59,7 @@ const PopUpWindow = ({
                       onChange={handleFileChange}
                     />
                   ) : (
-                    <CustomInput
+                    <CustomInputUpdate
                       type={field.type}
                       id={field.name}
                       name={field.name}
@@ -86,4 +86,4 @@ const PopUpWindow = ({
   );
 };
 
-export default PopUpWindow;
+export default PopUpWindowUpdate;
