@@ -4,6 +4,7 @@ import ButtonStyle from "./button";
 import PopUpWindowUpdate from "./pop_up_window/update_pop_up_window";
 
 const Announcement = () => {
+  // Dummy data for demonstration
   const announcements = [
     {
       id: 1,
@@ -40,50 +41,18 @@ const Announcement = () => {
       details:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
     },
-    {
-      id: 4,
-      title: "Important Announcement 4",
-      date: "May 10, 2024",
-      details:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
-    },
-    {
-      id: 5,
-      title: "Important Announcement 5",
-      date: "May 10, 2024",
-      details:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
-    },
-    {
-      id: 4,
-      title: "Important Announcement 3",
-      date: "May 10, 2024",
-      details:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
-    },
-    {
-      id: 5,
-      title: "Important Announcement 3",
-      date: "May 10, 2024",
-      details:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
-    },
   ];
-
-  const [selectedField, setSelectedField] = useState(null);
-  const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
-
+  const [isSelectedField, setSelectedField] = useState(null);
+  const [isSelectedAnnouncement, setSelectedAnnouncement] = useState(null);
   const handleSubmit = (formData) => {
-    console.log("Form submitted", formData);
+    console.log("form submitted", formData);
     setSelectedField(null);
   };
-
   const handleDelete = (announcementID) => {
     setSelectedAnnouncement(announcementID);
   };
-
   const handleConfirmDelete = () => {
-    console.log("Deleting Announcement with ID:", selectedAnnouncement);
+    console.log("Deletinf Announcement with ID:", isSelectedAnnouncement);
     setSelectedAnnouncement(null);
   };
 
@@ -128,7 +97,7 @@ const Announcement = () => {
                 </div>
               </div>
             </div>
-            {selectedField === "update" && (
+            {isSelectedField === "update" && (
               <PopUpWindowUpdate
                 isOpen={true}
                 onClose={() => setSelectedField(null)}
@@ -139,7 +108,7 @@ const Announcement = () => {
                 fields={updateAnnouncement}
               />
             )}
-            {selectedAnnouncement && (
+            {isSelectedAnnouncement && (
               <PopUpWindowUpdate
                 isOpen={true}
                 onClose={() => setSelectedAnnouncement(null)}
