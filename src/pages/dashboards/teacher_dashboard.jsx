@@ -6,7 +6,6 @@ import ControllerButton from "../../components/controller_button";
 import Schedule from "../../components/schedule";
 import { Outlet } from "react-router-dom";
 
-
 export default function TeacherDashboard() {
   return (
     <>
@@ -16,7 +15,7 @@ export default function TeacherDashboard() {
           <Navbar />
         </Container>
         <Container className="grid grid-cols-4 grid-rows-2 gap-4 mb-4">
-          <Container className="flex xl:h-[80vh] justify-center rounded-3xl col-span-3 row-span-2 bg-white">
+          <Container className="flex xl:h-[80vh] justify-center rounded-3xl col-span-3 row-span-2 bg-white overflow-y-auto">
             <Outlet />
           </Container>
           <ControllerButton />
