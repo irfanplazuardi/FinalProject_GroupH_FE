@@ -36,63 +36,62 @@ const Profile = () => {
   ];
 
   return (
-    <div className="xl:h-[80vh] md:h-[50vh]">
-      <div className="flex flex-col items-center justify-center py-3 xl:w-[100vh]">
-        <h2 className="font-bold text-3xl">Profile</h2>
-        <div className="m-4 bg-[#D9D9D9] rounded-xl xl:w-[80vh] my-3">
-          <div className="m-2 bg-[#D9D9D9] rounded-lg flex flex-col items-center justify-center gap-2">
-            <img
-              src={profilePicture}
-              alt="user photo"
-              className="w-20 h-20 rounded-xl mt-2"
-            />
-            <ButtonStyle
-              className="w-20 m-2 mx-10"
-              onClick={() => setSelectedField("picture")}
-              widthButton="24"
-            >
-              Change
-            </ButtonStyle>
+    <div className="xl:h-[80vh]">
+      <div className="flex flex-col items-center justify-center py-8">
+        <h2 className="font-bold text-3xl mb-5">Profile</h2>
+        <div className="p-7 bg-[#D9D9D9] rounded-lg flex items-center justify-center flex-col">
+          <img
+            src={profilePicture}
+            alt="user photo"
+            className="w-36 h-36 rounded-full mb-4"
+          />
+          <ButtonStyle
+            className="w-28 mt-4"
+            onClick={() => setSelectedField("picture")}
+          >
+            Change
+          </ButtonStyle>
+        </div>
+        <div className="m-5 bg-[#D9D9D9] w-full rounded-xl">
+          <div className="m-4 bg-white p-4 rounded-md">
+            <div className="font-bold text-lg mb-2">Name of Student</div>
+            <div>Conan Kun</div>
           </div>
-          <div className="m-2 bg-white p-2 rounded-md">
-            <div className="font-bold mb-1 text-lg">Name of Student</div>
-            <div className="text-sm">Conan Kun</div>
+          <div className="m-4 bg-white p-4 rounded-md">
+            <div className="font-bold text-lg mb-2">Birthday:</div>
+            <div>January 1, 1997</div>
           </div>
-          <div className="m-2 bg-white p-2 rounded-md">
-            <div className="font-bold mb-1 text-lg">Birthday:</div>
-            <div className="text-sm">January 1, 1997</div>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
-            <div className="gap-2">
-              <div className="font-bold mb-1 text-lg">Phone Number:</div>
-              <div className="text-sm">+628222334456</div>
+          <div className="m-4 bg-white p-4 rounded-md flex justify-between items-center">
+            <div className="gap-10">
+              <div className="font-bold text-lg mb-2">Phone Number:</div>
+              <div>+628222334456</div>
             </div>
             <ButtonStyle
-              widthButton="24"
+              widthButton="32"
               onClick={() => setSelectedField("phoneNumber")}
             >
               Change
             </ButtonStyle>
           </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
-            <div className="gap-2">
-              <div className="font-bold mb-1 text-lg">Email:</div>
-              <div className="text-sm">conankun@gmail.com</div>
+          <div className="m-4 bg-white p-4 rounded-md flex justify-between items-center">
+            <div>
+              <div className="font-bold text-lg mb-2">Email:</div>
+              <div>conankun@gmail.com</div>
             </div>
             <ButtonStyle
-              widthButton="24"
+              widthButton="32"
               onClick={() => setSelectedField("email")}
             >
               Change
             </ButtonStyle>
           </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
+          <div className="m-4 bg-white p-4 rounded-md flex justify-between items-center">
             <div>
-              <div className="font-bold mb-1 text-lg">Password:</div>
-              <div className="text-sm">********</div>
+              <div className="font-bold text-lg mb-2">Password:</div>
+              <div>********</div>
             </div>
             <ButtonStyle
-              widthButton="24"
+              widthButton="32"
               onClick={() => setSelectedField("password")}
             >
               Change
@@ -100,7 +99,6 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {/* Pop-up windows for editing profile fields */}
       {isSelectedField === "picture" && (
         <PopUpWindow
           isOpen={true}
