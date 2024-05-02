@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ButtonStyle from "./button";
-import PopUpWindow from "./pop_up_window";
+import PopUpWindowUpdate from "./pop_up_window/update_pop_up_window";
 
 const ControllerButton = () => {
   const [isAnnouncementOpen, setAnnouncementOpen] = useState(false);
@@ -27,7 +27,7 @@ const ControllerButton = () => {
       <div className="flex items-center justify-center h-12 lg:text-sm xl:text-xl rounded-3xl">
         <ButtonStyle>Student / Teacher List</ButtonStyle>
       </div>
-      <PopUpWindow
+      <PopUpWindowUpdate
         isOpen={isAnnouncementOpen}
         onClose={() => setAnnouncementOpen(false)}
         onSubmit={handleAnnouncementSubmit}

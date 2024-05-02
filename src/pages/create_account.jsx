@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import backgroundImage from "../assets/image_astronaut.png";
 import VogueSchoolLogoLarge from "../components/logo_large";
-import CustomInput from "../components/custom_input_label";
+import CustomInput from "../components/input_label/custom_input_label";
 import ButtonStyle from "../components/button";
 
 const CreateAccount = () => {

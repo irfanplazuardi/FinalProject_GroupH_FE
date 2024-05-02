@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ButtonStyle from "./button";
-import CustomInput from "./custom_input_label";
+import ButtonStyle from "../button";
+import CustomInput from "../input_label/custom_input_label";
 
 const PopUpWindow = ({
   isOpen,
@@ -37,7 +37,7 @@ const PopUpWindow = ({
 
   return (
     isOpen && (
-      <div className="fixed inset-0 flex justify-center items-center z-50">
+      <div className="fixed inset-0 flex justify-center items-center z-50 bg-slate-900 bg-opacity-35">
         <div className="bg-white p-10 rounded-lg shadow-md">
           <h2 className="text-3xl text-left font-semibold mb-10">{title}</h2>
           <form onSubmit={handleSubmit}>

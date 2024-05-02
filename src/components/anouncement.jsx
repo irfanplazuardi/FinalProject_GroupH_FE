@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "./container";
 import ButtonStyle from "./button";
-import PopUpWindow from "./pop_up_window";
+import PopUpWindowUpdate from "./pop_up_window/update_pop_up_window";
 
 const Announcement = () => {
   // Dummy data for demonstration
@@ -17,25 +17,29 @@ const Announcement = () => {
       id: 2,
       title: "Important Announcement 2",
       date: "May 5, 2024",
-      details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
+      details:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
     },
     {
       id: 3,
       title: "Important Announcement 3",
       date: "May 10, 2024",
-      details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
+      details:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
     },
     {
       id: 4,
       title: "Important Announcement 3",
       date: "May 10, 2024",
-      details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
+      details:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
     },
     {
       id: 5,
       title: "Important Announcement 3",
       date: "May 10, 2024",
-      details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
+      details:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod magna vitae purus ultrices.",
     },
   ];
   const [isSelectedField, setSelectedField] = useState(null);
@@ -52,7 +56,9 @@ const Announcement = () => {
     setSelectedAnnouncement(null);
   };
 
-  const updateAnnouncement = [{ name: "update", label: "Update", type: "text" }];
+  const updateAnnouncement = [
+    { name: "update", label: "Update", type: "text" },
+  ];
 
   return (
     <Container className="flex flex-col items-center">
@@ -72,17 +78,27 @@ const Announcement = () => {
               <div className="flex justify-between">
                 <p className="mr-10">{announcement.details}</p>
                 <div className="flex justify-between gap-4 my-7 ">
-                  <ButtonStyle onClick={() => setSelectedField("update")} widthButton="18" paddingX="4" paddingY="2">
+                  <ButtonStyle
+                    onClick={() => setSelectedField("update")}
+                    widthButton="18"
+                    paddingX="4"
+                    paddingY="2"
+                  >
                     Update
                   </ButtonStyle>
-                  <ButtonStyle onClick={() => handleDelete(announcement.id)} widthButton="18" paddingX="4" paddingY="2">
+                  <ButtonStyle
+                    onClick={() => handleDelete(announcement.id)}
+                    widthButton="18"
+                    paddingX="4"
+                    paddingY="2"
+                  >
                     Delete
                   </ButtonStyle>
                 </div>
               </div>
             </div>
             {isSelectedField === "update" && (
-              <PopUpWindow
+              <PopUpWindowUpdate
                 isOpen={true}
                 onClose={() => setSelectedField(null)}
                 onSubmit={handleSubmit}
@@ -93,7 +109,14 @@ const Announcement = () => {
               />
             )}
             {isSelectedAnnouncement && (
-              <PopUpWindow isOpen={true} onClose={() => setSelectedAnnouncement(null)} onSubmit={handleConfirmDelete} title="Delete Announcement" validationText="Are you sure want to delete this announcement?" buttonLeft="Yes" />
+              <PopUpWindowUpdate
+                isOpen={true}
+                onClose={() => setSelectedAnnouncement(null)}
+                onSubmit={handleConfirmDelete}
+                title="Delete Announcement"
+                validationText="Are you sure want to delete this announcement?"
+                buttonLeft="Yes"
+              />
             )}
           </Container>
         ))}
