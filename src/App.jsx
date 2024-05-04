@@ -17,6 +17,8 @@ import TestPage from "./pages/test";
 import ErrorPage from "./pages/error-page";
 import CourseTable from "./components/tables/course_table";
 import Profile from "./components/profile";
+import StudentListTable from "./components/tables/student_list_table";
+import TeacherListTable from "./components/tables/teacher_list_table";
 
 const DashboardRouter = () => {
   const { role } = useParams();
@@ -25,12 +27,11 @@ const DashboardRouter = () => {
   switch (role) {
     case "teacher":
       if (
-        location.pathname.includes(
-          "create-course" ||
-            "student-pogress" ||
-            "new-announcement" ||
-            "member-list"
-        )
+        location.pathname.includes("create-course") ||
+        location.pathname.includes("student-progress") ||
+        location.pathname.includes("new-announcement") ||
+        location.pathname.includes("teachers-list") ||
+        location.pathname.includes("students-list")
       ) {
         return <TableDashboard />;
       }
@@ -55,6 +56,8 @@ function App() {
           <Route path="profile" element={<Profile />} />
           {/* <Route path="settings" element={<Settings />} /> */}
           <Route path="create-course" element={<CourseTable />} />
+          <Route path="students-list" element={<StudentListTable />} />
+          <Route path="teachers-list" element={<TeacherListTable />} />
           {/* <Route path="student-pogress" element={<ProgressTable />} />
           <Route path="new-announcement" element={<AnouncementTable />} />
           <Route path="member-list" element={<MemberTable />} /> */}
