@@ -17,26 +17,34 @@ import TestPage from "./pages/test";
 import ErrorPage from "./pages/error-page";
 import CourseTable from "./components/tables/course_table";
 import Profile from "./components/profile";
-import Settings from "./components/settings";
+import StudentListTable from "./components/tables/student_list_table";
+import TeacherListTable from "./components/tables/teacher_list_table";
+import ProtectedRoutes from "./layouts/protected_route";
 
 const DashboardRouter = () => {
   const { role } = useParams();
   const location = useLocation();
+  const storedRole = localStorage.getItem("role");
 
   switch (role) {
     case "teacher":
+      if (storedRole === "student") {
+        return <Navigate to="/dashboard/student/course" />;
+      }
       if (
-        location.pathname.includes(
-          "create-course" ||
-            "student-pogress" ||
-            "new-announcement" ||
-            "member-list"
-        )
+        location.pathname.includes("create-course") ||
+        location.pathname.includes("student-progress") ||
+        location.pathname.includes("new-announcement") ||
+        location.pathname.includes("teachers-list") ||
+        location.pathname.includes("students-list")
       ) {
         return <TableDashboard />;
       }
       return <TeacherDashboard />;
     case "student":
+      if (storedRole === "teacher") {
+        return <Navigate to="/dashboard/teacher/course" />;
+      }
       return <StudentDashboard />;
     default:
       return <Navigate to="/" />;
@@ -50,18 +58,23 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/dashboard/:role" element={<DashboardRouter />}>
-          <Route path="course" element={<Course />} />
-          <Route path="announcement" element={<Announcement />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="create-course" element={<CourseTable />} />
-          {/* <Route path="student-pogress" element={<ProgressTable />} />
-          <Route path="new-announcement" element={<AnouncementTable />} />
-          <Route path="member-list" element={<MemberTable />} /> */}
-        </Route>
         <Route path="/testenv" element={<TestPage />}></Route>
         <Route path="*" element={<ErrorPage />} />
+
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/dashboard/:role" element={<DashboardRouter />}>
+            <Route path="course" element={<Course />} />
+            <Route path="announcement" element={<Announcement />} />
+            <Route path="profile" element={<Profile />} />
+            {/* <Route path="settings" element={<Settings />} /> */}
+            <Route path="create-course" element={<CourseTable />} />
+            <Route path="students-list" element={<StudentListTable />} />
+            <Route path="teachers-list" element={<TeacherListTable />} />
+            {/* <Route path="student-pogress" element={<ProgressTable />} />
+          <Route path="new-announcement" element={<AnouncementTable />} />
+          <Route path="member-list" element={<MemberTable />} /> */}
+          </Route>
+        </Route>
       </Routes>
     </Router>
   );

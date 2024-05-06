@@ -3,16 +3,96 @@ import backgroundImage from "../assets/image_astronaut.png";
 import VogueSchoolLogoLarge from "../components/logo_large";
 import CustomInput from "../components/input_label/custom_input_label";
 import ButtonStyle from "../components/button";
-import CreateAccountFunction from "./api/create_account";
-import BaseURL from "./api/axios";
+import apiService from "../api/api_service";
+import { useNavigate } from "react-router-dom";
 
 const CreateAccount = () => {
-  const { handleChange, handleSubmit, formData, errors } =
-    CreateAccountFunction();
-  const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+  const [formData, setFormData] = useState({
+    username: "",
+    birthday: "",
+    phone: "",
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({
+    username: "",
+    email: "",
+    apiError: "",
+  });
+  const navigate = useNavigate();
 
-  console.log(BaseURL);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Check if username or email already exists
+    const usernameExists = await checkUsernameExists(formData.username);
+    const emailExists = await checkEmailExists(formData.email);
+
+    if (usernameExists) {
+      setErrors({
+        ...errors,
+        username: "Username already exists",
+        apiError: "",
+      });
+      return;
+    }
+
+    if (emailExists) {
+      setErrors({ ...errors, email: "Email already exists", apiError: "" });
+      return;
+    }
+
+    try {
+      // Call the register API endpoint
+      const response = await apiService.postRegister(
+        formData.username,
+        formData.email,
+        formData.birthday,
+        formData.phone,
+        formData.password
+      );
+
+      // Handle the response
+      console.log("Registration successful:", response);
+
+      // Auto-login after account creation
+      const loginResponse = await apiService.postLogin(
+        formData.username,
+        formData.password
+      );
+      localStorage.setItem("accessToken", loginResponse.accessToken);
+      localStorage.setItem("role", loginResponse.role);
+
+      // Redirect to the dashboard or any other desired page
+      navigate(`/dashboard/${loginResponse.role}/course`);
+    } catch (error) {
+      console.error("Registration Error:", error);
+      setErrors({
+        ...errors,
+        apiError: "Failed to create account. Please try again later.",
+      });
+    }
+  };
+
+  const checkUsernameExists = async (username) => {
+    // Simulate checking if username exists in the database
+    // Replace this with your actual database check
+    return false; // Change to true if username exists
+  };
+
+  const checkEmailExists = async (email) => {
+    // Simulate checking if email exists in the database
+    // Replace this with your actual database check
+    return false; // Change to true if email exists
+  };
 
   return (
     <div className="h-screen flex">
@@ -100,7 +180,9 @@ const CreateAccount = () => {
                 className="w-full px-4 py-2 border rounded-md text-lg"
               />
             </div>
-
+            {errors.apiError && (
+              <p className="text-red-500 text-sm mb-4">{errors.apiError}</p>
+            )}
             <ButtonStyle type="submit">Create Account</ButtonStyle>
           </form>
         </div>

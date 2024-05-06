@@ -3,11 +3,44 @@ import backgroundImage from "../assets/astronaut.jpg";
 import VogueSchoolLogoLarge from "../components/logo_large";
 import CustomInput from "../components/input_label/custom_input_label";
 import ButtonStyle from "../components/button";
-import { Link } from "react-router-dom";
-import LoginFunction from "./api/login";
+import { Link, useNavigate } from "react-router-dom";
+import apiService from "../api/api_service";
 
 const Login = () => {
-  const { formData, error, handleChange, handleSubmit } = LoginFunction();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Perform validation checks here
+    const { username, password } = formData;
+    // Simulate database check (replace with actual API call)
+    try {
+      const response = await apiService.postLogin(username, password);
+      const { access_token, role } = response;
+
+      localStorage.setItem("accessToken", access_token);
+      localStorage.setItem("role", role);
+
+      if (role === "student") {
+        navigate("/dashboard/student/course");
+      } else if (role === "teacher") {
+        navigate("/dashboard/teacher/course");
+      }
+    } catch (error) {
+      setError("Invalid username or password.");
+    }
+  };
+
   return (
     <div
       className="min-h-screen flex justify-center items-center bg-cover"
@@ -25,11 +58,11 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <CustomInput
-                label="Username/Email" // Pass label prop for Email field
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                label="Username" // Pass label prop for username field
+                type="text"
+                id="username"
+                name="username"
+                value={formData.username}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md"
               />
