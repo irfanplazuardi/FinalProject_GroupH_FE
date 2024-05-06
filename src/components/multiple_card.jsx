@@ -2,36 +2,42 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import profpic1 from "../assets/slides/profpic/profpic1.jpg";
+import profpic2 from "../assets/slides/profpic/profpic2.jpg";
+import profpic3 from "../assets/slides/profpic/profpic3.jpg";
+import profpic4 from "../assets/slides/profpic/profpic4.jpg";
+import profpic5 from "../assets/slides/profpic/profpic5.jpg";
+import profpic6 from "../assets/slides/profpic/profpic6.jpg";
 
 const data = [
   {
     id: 1,
-    imageUrl: "src/assets/slides/profpic/profpic1.jpg",
+    imageUrl: profpic1,
     description: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, assumenda!"`,
   },
   {
     id: 2,
-    imageUrl: "src/assets/slides/profpic/profpic2.jpg",
+    imageUrl: profpic2,
     description: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, assumenda!"`,
   },
   {
     id: 3,
-    imageUrl: "src/assets/slides/profpic/profpic3.jpg",
+    imageUrl: profpic3,
     description: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, assumenda!"`,
   },
   {
     id: 4,
-    imageUrl: "src/assets/slides/profpic/profpic4.jpg",
+    imageUrl: profpic4,
     description: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, assumenda!"`,
   },
   {
     id: 5,
-    imageUrl: "src/assets/slides/profpic/profpic5.jpg",
+    imageUrl: profpic5,
     description: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, assumenda!"`,
   },
   {
     id: 6,
-    imageUrl: "src/assets/slides/profpic/profpic6.jpg",
+    imageUrl: profpic6,
     description: `"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, assumenda!"`,
   },
 ];
