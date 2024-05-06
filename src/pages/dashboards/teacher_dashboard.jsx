@@ -10,12 +10,12 @@ export default function TeacherDashboard() {
   return (
     <>
       <Sidebar />
-      <Container className="lg:h-full xl:h-screen p-4 sm:ml-64 bg-[#D9D9D9]">
-        <Container className="p-4 mb-4 flex justify-between items-center bg-white rounded-full ">
+      <Container className="lg:h-full xl:h-screen p-4 sm:ml-64 bg-[#D9D9D9] dark:bg-slate-500">
+        <Container className="p-4 mb-4 flex justify-between items-center bg-white rounded-full dark:bg-slate-800">
           <Navbar />
         </Container>
         <Container className="grid grid-cols-4 grid-rows-2 gap-4 mb-4">
-          <Container className="flex xl:h-[80vh] justify-center rounded-3xl col-span-3 row-span-2 bg-white overflow-y-auto">
+          <Container className="flex xl:h-[80vh] justify-center rounded-3xl col-span-3 row-span-2 bg-white overflow-y-auto dark:bg-slate-800">
             <Outlet />
           </Container>
           <ControllerButton />
