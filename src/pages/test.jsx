@@ -1,23 +1,36 @@
-import React from "react";
-import Sidebar from "../components/sidebar";
-import Navbar from "../components/navbar";
-import Container from "../components/container";
-import CourseTable from "../components/tables/course_table";
-import { Outlet } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const TestPage = () => {
+const Test = () => {
+  const [responseData, setResponseData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(`https://adorable-serenity-production.up.railway.app/login`, {
+          input_value: "irfanpl",
+          password: "12345678",
+        });
+        setResponseData(response.data);
+        console.log("Response:", response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <>
-      <Sidebar />
-      <Container className="h-screen p-4 sm:ml-64 bg-white">
-        <Container className="p-4 mb-4 flex justify-between items-center bg-gray-200 rounded-full ">
-          <Navbar />
-        </Container>
-        <CourseTable />
-        <Outlet />
-      </Container>
-    </>
+    <div>
+      {responseData && (
+        <div>
+          <h2>Response Data:</h2>
+          <p>{JSON.stringify(responseData)}</p>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default TestPage;
+export default Test;

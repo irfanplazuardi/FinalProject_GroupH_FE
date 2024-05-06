@@ -3,52 +3,42 @@ import backgroundImage from "../assets/astronaut.jpg";
 import VogueSchoolLogoLarge from "../components/logo_large";
 import CustomInput from "../components/input_label/custom_input_label";
 import ButtonStyle from "../components/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import apiService from "../api/api_service";
+
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform validation checks here
-    const { email, password } = formData;
+    const { username, password } = formData;
     // Simulate database check (replace with actual API call)
-    const userExists = checkUserExists(email);
-    if (!userExists) {
-      setError("Username or email doesn't exist.");
-      return;
-    }
-    // Simulate password check (replace with actual API call)
-    const correctPassword = checkPassword(email, password);
-    if (!correctPassword) {
-      setError("Incorrect password.");
-      return;
-    }
-    // If all checks pass, you can proceed with submitting the form or redirecting the user
-    // For now, let's log a success message
-    console.log("Login successful!");
-  };
+    try {
+      const response = await apiService.postLogin(username, password);
+      const { access_token, role } = response;
 
-  const checkUserExists = (email) => {
-    // Simulated function to check if the user exists in the database
-    // Replace this with your actual backend logic
-    // Return true if the user exists, false otherwise
-    return true; // Replace this with your actual check
-  };
+      localStorage.setItem("accessToken", access_token);
+      localStorage.setItem("role", role);
 
-  const checkPassword = (email, password) => {
-    // Simulated function to check if the password matches the one associated with the email
-    // Replace this with your actual backend logic
-    // Return true if the password is correct, false otherwise
-    return true; // Replace this with your actual check
+      if (role === "student") {
+        navigate("/dashboard/student/course");
+      } else if (role === "teacher") {
+        navigate("/dashboard/teacher/course");
+      }
+    } catch (error) {
+      setError("Invalid username or password.");
+    }
   };
 
   return (
@@ -59,8 +49,7 @@ const Login = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         width: "100%",
-      }}
-    >
+      }}>
       <div>
         <VogueSchoolLogoLarge />
         <div className="w-full max-w-md bg-white bg-opacity-75 p-8 rounded-2xl shadow-lg">
@@ -68,11 +57,11 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <CustomInput
-                label="Username/Email" // Pass label prop for Email field
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                label="Username" // Pass label prop for username field
+                type="text"
+                id="username"
+                name="username"
+                value={formData.username}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md"
               />
