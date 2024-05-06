@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RxDotFilled } from "react-icons/rx";
 
 const Carousel = () => {
-  const slides = ["src/assets/slides/anouncement/slide1.png", "src/assets/slides/anouncement/slide2.png", "src/assets/slides/anouncement/slide3.png", "src/assets/slides/anouncement/slide4.png", "src/assets/slides/anouncement/slide5.png"];
+  const slides = ["../assets/slides/anouncement/slide1.png", "../assets/slides/anouncement/slide2.png", "../assets/slides/anouncement/slide3.png", "../assets/slides/anouncement/slide4.png", "../assets/slides/anouncement/slide5.png"];
   const [currentIndex, setCurrentIndex] = useState(2);
   const [timer, setTimer] = useState(null);
 
