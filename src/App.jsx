@@ -17,6 +17,7 @@ import TestPage from "./pages/test";
 import ErrorPage from "./pages/error-page";
 import CourseTable from "./components/tables/course_table";
 import Profile from "./components/profile";
+import Settings from "./components/settings";
 
 const DashboardRouter = () => {
   const { role } = useParams();
@@ -53,7 +54,7 @@ function App() {
           <Route path="course" element={<Course />} />
           <Route path="announcement" element={<Announcement />} />
           <Route path="profile" element={<Profile />} />
-          {/* <Route path="settings" element={<Settings />} /> */}
+          <Route path="settings" element={<Settings />} />
           <Route path="create-course" element={<CourseTable />} />
           {/* <Route path="student-pogress" element={<ProgressTable />} />
           <Route path="new-announcement" element={<AnouncementTable />} />

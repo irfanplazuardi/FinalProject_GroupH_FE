@@ -3,61 +3,16 @@ import backgroundImage from "../assets/image_astronaut.png";
 import VogueSchoolLogoLarge from "../components/logo_large";
 import CustomInput from "../components/input_label/custom_input_label";
 import ButtonStyle from "../components/button";
+import CreateAccountFunction from "./api/create_account";
+import BaseURL from "./api/axios";
 
 const CreateAccount = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    birthday: "",
-    phone: "",
-    email: "",
-    password: "",
-  });
-  const [errors, setErrors] = useState({
-    username: "",
-    email: "",
-  });
+  const { handleChange, handleSubmit, formData, errors } =
+    CreateAccountFunction();
+  const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Check if username or email already exists
-    const usernameExists = await checkUsernameExists(formData.username);
-    const emailExists = await checkEmailExists(formData.email);
-
-    if (usernameExists) {
-      setErrors({ ...errors, username: "Username already exists" });
-      return;
-    }
-
-    if (emailExists) {
-      setErrors({ ...errors, email: "Email already exists" });
-      return;
-    }
-
-    // If everything is valid, submit the form
-    // You can send the form data to your backend for further processing
-    console.log("Form submitted:", formData);
-  };
-
-  const checkUsernameExists = async (username) => {
-    // Simulate checking if username exists in the database
-    // Replace this with your actual database check
-    return false; // Change to true if username exists
-  };
-
-  const checkEmailExists = async (email) => {
-    // Simulate checking if email exists in the database
-    // Replace this with your actual database check
-    return false; // Change to true if email exists
-  };
+  console.log(BaseURL);
 
   return (
     <div className="h-screen flex">

@@ -4,53 +4,10 @@ import VogueSchoolLogoLarge from "../components/logo_large";
 import CustomInput from "../components/input_label/custom_input_label";
 import ButtonStyle from "../components/button";
 import { Link } from "react-router-dom";
+import LoginFunction from "./api/login";
+
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError("");
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform validation checks here
-    const { email, password } = formData;
-    // Simulate database check (replace with actual API call)
-    const userExists = checkUserExists(email);
-    if (!userExists) {
-      setError("Username or email doesn't exist.");
-      return;
-    }
-    // Simulate password check (replace with actual API call)
-    const correctPassword = checkPassword(email, password);
-    if (!correctPassword) {
-      setError("Incorrect password.");
-      return;
-    }
-    // If all checks pass, you can proceed with submitting the form or redirecting the user
-    // For now, let's log a success message
-    console.log("Login successful!");
-  };
-
-  const checkUserExists = (email) => {
-    // Simulated function to check if the user exists in the database
-    // Replace this with your actual backend logic
-    // Return true if the user exists, false otherwise
-    return true; // Replace this with your actual check
-  };
-
-  const checkPassword = (email, password) => {
-    // Simulated function to check if the password matches the one associated with the email
-    // Replace this with your actual backend logic
-    // Return true if the password is correct, false otherwise
-    return true; // Replace this with your actual check
-  };
-
+  const { formData, error, handleChange, handleSubmit } = LoginFunction();
   return (
     <div
       className="min-h-screen flex justify-center items-center bg-cover"
