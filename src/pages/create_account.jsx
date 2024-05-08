@@ -23,10 +23,12 @@ const CreateAccount = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
+
+    // Save username in local storage
+    if (name === "username") {
+      localStorage.setItem("username", value);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -49,14 +51,14 @@ const CreateAccount = () => {
     try {
       // Call the register API endpoint
       const response = await apiService.postRegister(formData.username, formData.email, formData.birthday, formData.phone, formData.password);
-
       // Handle the response
       console.log("Registration successful:", response);
 
       // Auto-login after account creation
       const loginResponse = await apiService.postLogin(formData.username, formData.password);
-      localStorage.setItem("accessToken", loginResponse.accessToken);
+      localStorage.setItem("access_token", loginResponse.access_token);
       localStorage.setItem("role", loginResponse.role);
+      localStorage.setItem("user_id", loginResponse.user_id);
 
       // Redirect to the dashboard or any other desired page
       navigate(`/dashboard/${loginResponse.role}/course`);
