@@ -23,10 +23,12 @@ const CreateAccount = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
+
+    // Save username in local storage
+    if (name === "username") {
+      localStorage.setItem("username", value);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -37,7 +39,11 @@ const CreateAccount = () => {
     const emailExists = await checkEmailExists(formData.email);
 
     if (usernameExists) {
-      setErrors({ ...errors, username: "Username already exists", apiError: "" });
+      setErrors({
+        ...errors,
+        username: "Username already exists",
+        apiError: "",
+      });
       return;
     }
 
@@ -57,12 +63,16 @@ const CreateAccount = () => {
       const loginResponse = await apiService.postLogin(formData.username, formData.password);
       localStorage.setItem("accessToken", loginResponse.accessToken);
       localStorage.setItem("role", loginResponse.role);
+      localStorage.setItem("user_id", loginResponse.user_id);
 
       // Redirect to the dashboard or any other desired page
       navigate(`/dashboard/${loginResponse.role}/course`);
     } catch (error) {
       console.error("Registration Error:", error);
-      setErrors({ ...errors, apiError: "Failed to create account. Please try again later." });
+      setErrors({
+        ...errors,
+        apiError: "Failed to create account. Please try again later.",
+      });
     }
   };
 
