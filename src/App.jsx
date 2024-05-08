@@ -18,8 +18,6 @@ import TestPage from "./pages/test";
 import ErrorPage from "./pages/error-page";
 import CourseTable from "./components/tables/course_table";
 import Profile from "./components/profile";
-import StudentListTable from "./components/tables/student_list_table";
-import TeacherListTable from "./components/tables/teacher_list_table";
 import ListTable from "./components/tables/list_table";
 import Settings from "./components/settings";
 // import ProtectedRoutes from "./layouts/protected_route";
