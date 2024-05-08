@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/home_page";
 import Login from "./pages/login";
-import CreateAccount from "./pages/create_account";
+// import CreateAccount from "./pages/create_account";
+import CreateAccountCopy from "./pages/create_account_copy";
 import TeacherDashboard from "./pages/dashboards/teacher_dashboard";
 import StudentDashboard from "./pages/dashboards/student_dashboard";
 import TableDashboard from "./pages/dashboards/table_dashboard";
@@ -59,7 +60,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/create-account" element={<CreateAccount />} />
+          <Route path="/create-account" element={<CreateAccountCopy />} />
           <Route path="/testenv" element={<TestPage />}></Route>
           <Route path="*" element={<ErrorPage />} />
 
