@@ -70,7 +70,7 @@ const EditCourseModal = () => {
                   onChange={handleChange}
                   cols="30"
                   rows="10"
-                  className="w-[40vh] h-[40vh] p-2 border border-gray-300 bg-gray-200 rounded-lg "
+                  className="w-[40vh] h-full p-2 border border-gray-300 bg-gray-200 rounded-lg "
                   placeholder="Describe the course here"></textarea>
               </div>
 
