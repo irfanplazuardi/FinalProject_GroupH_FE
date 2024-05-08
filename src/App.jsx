@@ -1,5 +1,10 @@
 import { useParams, Navigate } from "react-router-dom";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import HomePage from "./pages/home_page";
 import Login from "./pages/login";
 import CreateAccount from "./pages/create_account";
@@ -14,8 +19,9 @@ import CourseTable from "./components/tables/course_table";
 import Profile from "./components/profile";
 import StudentListTable from "./components/tables/student_list_table";
 import TeacherListTable from "./components/tables/teacher_list_table";
-import ProtectedRoutes from "./layouts/protected_route";
-
+import Settings from "./components/settings";
+// import ProtectedRoutes from "./layouts/protected_route";
+import { DarkModeProvider } from "./components/settings_darkmode/dark_mode_context";
 const DashboardRouter = () => {
   const { role } = useParams();
   const location = useLocation();
@@ -48,20 +54,21 @@ const DashboardRouter = () => {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/testenv" element={<TestPage />}></Route>
-        <Route path="*" element={<ErrorPage />} />
+    <DarkModeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/create-account" element={<CreateAccount />} />
+          <Route path="/testenv" element={<TestPage />}></Route>
+          <Route path="*" element={<ErrorPage />} />
 
-        <Route element={<ProtectedRoutes />}>
+          {/* <Route element={<ProtectedRoutes />}> */}
           <Route path="/dashboard/:role" element={<DashboardRouter />}>
             <Route path="course" element={<Course />} />
             <Route path="announcement" element={<Announcement />} />
             <Route path="profile" element={<Profile />} />
-            {/* <Route path="settings" element={<Settings />} /> */}
+            <Route path="settings" element={<Settings />} />
             <Route path="create-course" element={<CourseTable />} />
             <Route path="students-list" element={<StudentListTable />} />
             <Route path="teachers-list" element={<TeacherListTable />} />
@@ -69,9 +76,10 @@ function App() {
           <Route path="new-announcement" element={<AnouncementTable />} />
           <Route path="member-list" element={<MemberTable />} /> */}
           </Route>
-        </Route>
-      </Routes>
-    </Router>
+          {/* </Route> */}
+        </Routes>
+      </Router>
+    </DarkModeProvider>
   );
 }
 
