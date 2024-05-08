@@ -10,15 +10,18 @@ const api = axios.create({
 });
 
 const apiService = {
-  // async get(endpoint) {
-  //   try {
-  //     const response = await api.get(endpoint);
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error("API Error:", error);
-  //     throw error;
-  //   }
-  // },
+  async getUserData(role, user_id) {
+    try {
+      const response = await api.get(`/${role}s/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
 
   async postLogin(username, password) {
     try {
