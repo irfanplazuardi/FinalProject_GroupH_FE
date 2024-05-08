@@ -57,7 +57,8 @@ const Login = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         width: "100%",
-      }}>
+      }}
+    >
       <div>
         <VogueSchoolLogoLarge />
         <div className="w-full max-w-md bg-white bg-opacity-75 p-8 rounded-2xl shadow-lg">

@@ -39,7 +39,11 @@ const CreateAccount = () => {
     const emailExists = await checkEmailExists(formData.email);
 
     if (usernameExists) {
-      setErrors({ ...errors, username: "Username already exists", apiError: "" });
+      setErrors({
+        ...errors,
+        username: "Username already exists",
+        apiError: "",
+      });
       return;
     }
 
@@ -64,7 +68,10 @@ const CreateAccount = () => {
       navigate(`/dashboard/${loginResponse.role}/course`);
     } catch (error) {
       console.error("Registration Error:", error);
-      setErrors({ ...errors, apiError: "Failed to create account. Please try again later." });
+      setErrors({
+        ...errors,
+        apiError: "Failed to create account. Please try again later.",
+      });
     }
   };
 
