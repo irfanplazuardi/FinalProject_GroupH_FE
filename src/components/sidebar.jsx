@@ -42,6 +42,14 @@ export default function Sidebar() {
     }
   };
 
+  const navigateToSettings = () => {
+    if (role === "teacher") {
+      navigate("/dashboard/teacher/settings");
+    } else {
+      navigate("/dashboard/student/settings");
+    }
+  };
+
   const logout = () => {
     localStorage.clear();
     navigate("/");
@@ -110,7 +118,7 @@ export default function Sidebar() {
                   <span className="flex-1 ms-3 whitespace-nowrap">Profile</span>
                 </a>
               </li>
-              <li onClick={() => navigate("#")}>
+              <li onClick={navigateToSettings}>
                 <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg
                     className="flex-shrink-0 w-5 h-5 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
