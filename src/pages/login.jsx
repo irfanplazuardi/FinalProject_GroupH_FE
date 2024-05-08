@@ -15,8 +15,14 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
     setError("");
+
+    // Save username in local storage
+    if (name === "username") {
+      localStorage.setItem("username", value);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -26,10 +32,12 @@ const Login = () => {
     // Simulate database check (replace with actual API call)
     try {
       const response = await apiService.postLogin(username, password);
-      const { access_token, role } = response;
+      const { access_token, role, user_id } = response;
 
-      localStorage.setItem("accessToken", access_token);
+      localStorage.setItem("access_token", access_token);
       localStorage.setItem("role", role);
+      localStorage.setItem("user_id", user_id);
+      console.log("response: ", response);
 
       if (role === "student") {
         navigate("/dashboard/student/course");
