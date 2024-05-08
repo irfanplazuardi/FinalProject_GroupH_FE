@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import backgroundImage from "../assets/astronaut.jpg";
 import VogueSchoolLogoSmall from "./logo_small";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faBell, faCircleUser, faGear, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-
+import { Link, useNavigate } from "react-router-dom";
 export default function Sidebar() {
   const course_icon = <FontAwesomeIcon icon={faBook} />;
   const bel_icon = <FontAwesomeIcon icon={faBell} />;
@@ -43,15 +44,15 @@ export default function Sidebar() {
 
   return (
     <>
-      <aside id="logo-sidebar" className="fixed w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-[#D9D9D9] outline-none" aria-label="Sidebar">
-        <div className="h-[90vh] px-3 py-4 ml-4 mt-3 overflow-y-auto rounded-3xl bg-gray-800 cursor-pointer">
-          <div className="flex items-center ps-9 mb-5">
+      <aside id="logo-sidebar" className="fixed w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-[#D9D9D9] outline-none dark:bg-slate-500" aria-label="Sidebar">
+        <div className="h-[90vh] px-3 py-4 ml-4 mt-3 overflow-y-auto rounded-3xl bg-gray-400 dark:bg-slate-800">
+          <Link className="flex items-center ps-9 mb-5" to="/dashboard/:role">
             <VogueSchoolLogoSmall />
-          </div>
+          </Link>
           <ul className="space-y-2 font-medium flex flex-col justify-between md:h-[82%] xl:h-[84%]">
             <div>
               <li onClick={navigateToCourse}>
-                <Link className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <Link to="/dashboard/:role" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg className="w-5 h-5 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                     {course_icon}
                   </svg>
@@ -101,8 +102,7 @@ export default function Sidebar() {
             </div>
             <div>
               <li onClick={logout}>
-                {/* <Link className="flex items-center xl:mt-[49vh] lg:mt-[32vh] p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group "> */}
-                <Link className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ">
+                <Link className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg
                     className="flex-shrink-0 w-5 h-5 text-gray-00 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
