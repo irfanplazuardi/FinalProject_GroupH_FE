@@ -1,6 +1,8 @@
 // api/apiService.js
 import axios from "axios";
 
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTE1ODM3MSwianRpIjoiZGU5YmU1MjYtZWM3Ny00MDc3LWE1ZTMtMjYyYWNlMThkNmIyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzE1MTU4MzcxLCJjc3JmIjoiMmUzZGI1YTUtYzkzZi00OTdiLTg2NTctZTI1NTczOGFhZjU5IiwiZXhwIjoxNzE1MTU5MjcxLCJ1c2VybmFtZSI6ImlyZmFuIiwicm9sZSI6InN0dWRlbnQifQ.XqQ6HB1JeVRzxJKpkOZQY4pl-zlYNevetcUI92OnKQM";
 // Create Axios instance with base URL and default headers
 const api = axios.create({
   baseURL: "https://adorable-serenity-production.up.railway.app",
@@ -17,6 +19,20 @@ const apiService = {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async getAnnouncements() {
+    try {
+      const response = await api.get("/announcement", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      return response.data;
     } catch (error) {
       console.error("API Error:", error);
       throw error;
