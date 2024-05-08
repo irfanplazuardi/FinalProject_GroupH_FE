@@ -18,8 +18,7 @@ import TestPage from "./pages/test";
 import ErrorPage from "./pages/error-page";
 import CourseTable from "./components/tables/course_table";
 import Profile from "./components/profile";
-import StudentListTable from "./components/tables/student_list_table";
-import TeacherListTable from "./components/tables/teacher_list_table";
+import ListTable from "./components/tables/list_table";
 import Settings from "./components/settings";
 // import ProtectedRoutes from "./layouts/protected_route";
 import { DarkModeProvider } from "./components/settings_darkmode/dark_mode_context";
@@ -65,7 +64,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="settings" element={<Settings />} />
             <Route path="create-course" element={<CourseTable />} />
-            <Route path="member-list" element={<StudentListTable />} />
+            <Route path="member-list" element={<ListTable />} />
             {/* <Route path="student-pogress" element={<ProgressTable />} />
           <Route path="new-announcement" element={<AnouncementTable />} />
           <Route path="member-list" element={<MemberTable />} /> */}
