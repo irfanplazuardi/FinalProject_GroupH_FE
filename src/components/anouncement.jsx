@@ -23,11 +23,16 @@ const Announcement = () => {
   return (
     <Container className="flex flex-col items-center">
       <div className="text-center mb-8">
-        <h2 className="font-bold text-5xl p-5">Announcements</h2>
+        <h2 className="font-bold text-3xl p-5 dark:text-white">
+          Announcements
+        </h2>
       </div>
       <Container className="mb-8">
         {announcements.map((announcement) => (
-          <Container key={announcement.announcement_id} className="w-[80%] mx-auto mb-4">
+          <Container
+            key={announcement.announcement_id}
+            className="w-[80%] mx-auto mb-4"
+          >
             <div className="border rounded-lg p-4 bg-[#D9D9D9]">
               <div className="flex justify-between">
                 <h3 className="font-bold text-lg">{announcement.created_by}</h3>

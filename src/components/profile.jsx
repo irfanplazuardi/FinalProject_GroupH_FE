@@ -17,7 +17,7 @@ const Profile = () => {
   }, []);
 
   useEffect(() => {
-    apiService.getProfile().then((data) => {
+    apiService.getProfileData().then((data) => {
       setProfile(data.profile);
       console.log(data.profile);
     });

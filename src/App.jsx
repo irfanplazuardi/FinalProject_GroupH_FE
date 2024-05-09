@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/home_page";
 import Login from "./pages/login";
-// import CreateAccount from "./pages/create_account";
-import CreateAccountCopy from "./pages/create_account_copy";
+import CreateAccount from "./pages/create_account";
 import TeacherDashboard from "./pages/dashboards/teacher_dashboard";
 import StudentDashboard from "./pages/dashboards/student_dashboard";
 import TableDashboard from "./pages/dashboards/table_dashboard";
@@ -18,11 +17,9 @@ import TestPage from "./pages/test";
 import ErrorPage from "./pages/error-page";
 import CourseTable from "./components/tables/course_table";
 import Profile from "./components/profile";
-import StudentListTable from "./components/tables/student_list_table";
-import TeacherListTable from "./components/tables/teacher_list_table";
+import ListTable from "./components/tables/list_table";
 import Settings from "./components/settings";
-// import ProtectedRoutes from "./layouts/protected_route";
-
+import ProtectedRoutes from "./layouts/protected_route";
 const DashboardRouter = () => {
   const { role } = useParams();
   const location = useLocation();
@@ -58,7 +55,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/create-account" element={<CreateAccountCopy />} />
+        <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/testenv" element={<TestPage />}></Route>
         <Route path="*" element={<ErrorPage />} />
 
@@ -69,10 +66,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
           <Route path="create-course" element={<CourseTable />} />
-          <Route path="member-list" element={<StudentListTable />} />
-          {/* <Route path="student-pogress" element={<ProgressTable />} />
-          <Route path="new-announcement" element={<AnouncementTable />} />
-          <Route path="member-list" element={<MemberTable />} /> */}
+          <Route path="member-list" element={<ListTable />} />
         </Route>
         {/* </Route> */}
       </Routes>

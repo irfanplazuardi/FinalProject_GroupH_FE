@@ -60,14 +60,14 @@ export default function Sidebar() {
     <>
       <aside
         id="logo-sidebar"
-        className="fixed w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-[#D9D9D9] outline-none dark:bg-slate-500"
+        className="fixed w-64 transition-transform -translate-x-full sm:translate-x-0 bg-[#D9D9D9] outline-none dark:bg-slate-500 "
         aria-label="Sidebar"
       >
-        <div className="h-[90vh] px-3 py-4 ml-4 mt-3 overflow-y-auto rounded-3xl bg-gray-400 dark:bg-slate-800">
+        <div className="h-screen px-3 py-4 ml-4 mt-3 overflow-y-auto rounded-3xl bg-gray-400 dark:bg-slate-800 xl:h-screen lg:h-screen md:screen">
           <Link className="flex items-center ps-9 mb-5" to="/dashboard/:role">
             <VogueSchoolLogoSmall />
           </Link>
-          <ul className="space-y-2 font-medium flex flex-col justify-between md:h-[82%] xl:h-[84%]">
+          <ul className="font-medium flex flex-col justify-between md:h-[82%] xl:h-[84%]">
             <div>
               <li onClick={navigateToCourse}>
                 <Link
