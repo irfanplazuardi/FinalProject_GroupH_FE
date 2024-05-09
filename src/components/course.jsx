@@ -3,15 +3,12 @@ import apiService from "../api/api_service";
 import Container from "./container";
 
 const Course = () => {
-  const subjects = ["Math", "Science", "History", "English"];
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    // Call the API to get courses
     apiService
       .getCourses()
       .then((data) => {
-        // Update the courses state with the data from the API response
         setCourses(data.courses);
       })
       .catch((error) => {
