@@ -1,47 +1,36 @@
 import React, { useState, useEffect } from "react";
 import apiService from "../api/api_service";
 
-function AnnouncementTable() {
-  const [announcements, setAnnouncements] = useState([]);
+function YourComponent() {
+  const [student, setStudent] = useState(null);
 
   useEffect(() => {
-    // Call the API to get announcements
     apiService
-      .getAnnouncements()
-      .then((data) => {
-        // Update the announcements state with the data from the API response
-        setAnnouncements(data.announcements);
+      .getUserData(4) // Pass the student ID as an argument
+      .then((studentData) => {
+        setStudent(studentData); // Update student state
       })
       .catch((error) => {
-        console.error("Error fetching announcements:", error);
+        console.error("API Error:", error);
       });
-  }, []);
+  }, []); // Empty dependency array means it runs only once after component mount
 
-  return (
-    <div>
-      <h1>Announcements</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Description</th>
-            <th>Created At</th>
-            <th>Created By</th>
-          </tr>
-        </thead>
-        <tbody>
-          {announcements.map((announcement) => (
-            <tr key={announcement.announcement_id}>
-              <td>{announcement.announcement_id}</td>
-              <td>{announcement.announcement_desc}</td>
-              <td>{announcement.created_at}</td>
-              <td>{announcement.created_by}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  // Render student data if available
+  if (student) {
+    return (
+      <div>
+        <p>Name: {student.student_name}</p>
+        <p>birtday: {student.student_birthday}</p>
+        <p>phone: {student.phone}</p>
+        <p>Email: {student.student_email}</p>
+        <p type="password">pass: {student.password}</p>
+        {/* Render other student details here */}
+      </div>
+    );
+  }
+
+  // If no data and no error, render nothing
+  return null;
 }
 
-export default AnnouncementTable;
+export default YourComponent;

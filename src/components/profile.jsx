@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
 import ButtonStyle from "./button";
 import PopUpWindow from "./pop_up_window/pop_up_window";
+import apiService from "../api/api_service";
 
 const Profile = () => {
   const [isSelectedField, setSelectedField] = useState(null);
   const [profilePicture, setProfilePicture] = useState("");
+  const [profile, setProfile] = useState([]);
+  // const user_role = localStorage.getItem("role");
 
   useEffect(() => {
     const storedProfilePicture = localStorage.getItem("profilePicture");
     if (storedProfilePicture) {
       setProfilePicture(storedProfilePicture);
     }
+  }, []);
+
+  useEffect(() => {
+    apiService.getProfile().then((data) => {
+      setProfile(data.profile);
+      console.log(data.profile);
+    });
   }, []);
 
   const handleSubmit = (formData) => {
@@ -55,19 +65,17 @@ const Profile = () => {
             </ButtonStyle>
           </div>
           <div className="m-2 bg-white p-2 rounded-md">
-            <div className="font-bold mb-1 text-lg dark:text-gray-400">
-              Name of Student
-            </div>
-            <div className="text-sm">Conan Kun</div>
+            <div className="font-bold mb-1 text-lg">Name of Student</div>
+            <div className="text-sm">{profile.name}</div>
           </div>
           <div className="m-2 bg-white p-2 rounded-md">
             <div className="font-bold mb-1 text-lg">Birthday:</div>
-            <div className="text-sm">January 1, 1997</div>
+            <div className="text-sm">{profile.birthday}</div>
           </div>
           <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
             <div className="gap-2">
               <div className="font-bold mb-1 text-lg">Phone Number:</div>
-              <div className="text-sm">+628222334456</div>
+              <div className="text-sm">{profile.phone}</div>
             </div>
             <ButtonStyle
               widthButton="24"
@@ -79,7 +87,7 @@ const Profile = () => {
           <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
             <div className="gap-2">
               <div className="font-bold mb-1 text-lg">Email:</div>
-              <div className="text-sm">conankun@gmail.com</div>
+              <div className="text-sm">{profile.email}</div>
             </div>
             <ButtonStyle
               widthButton="24"
@@ -91,7 +99,7 @@ const Profile = () => {
           <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
             <div>
               <div className="font-bold mb-1 text-lg">Password:</div>
-              <div className="text-sm">********</div>
+              <div className="text-sm">{profile.password}</div>
             </div>
             <ButtonStyle
               widthButton="24"
