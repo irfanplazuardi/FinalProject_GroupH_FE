@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import apiService from "../../api/api_service";
 import EditStudentModal from "../modals/edit_student";
 import DeleteModal from "../modals/delete_course";
 
 const StudentListTable = () => {
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    apiService
+      .getStudents()
+      .then((data) => {
+        setStudents(data.students);
+      })
+      .catch((error) => {
+        console.error("Error fetching students:", error);
+      });
+  }, []);
   return (
     <>
           <table className="border border-black m-10">
@@ -13,22 +26,19 @@ const StudentListTable = () => {
                 <th className="border border-black px-4 py-2">PHONE</th>
                 <th className="border border-black px-4 py-2">EMAIL</th>
                 <th className="border border-black px-4 py-2">Picture</th>
-                <th className="border border-black px-4 py-2">Created At</th>
-                <th className="border border-black px-4 py-2">Updated At</th>
                 <th className="border border-black px-4 py-2">Actions</th>
               </tr>
             </thead>
             <tbody>
+            {students.map((student) => (
               <tr className="bg-white">
-                <td className="border border-black px-4 py-2">1</td>
-                <td className="border border-black px-4 py-2">Bambang</td>
-                <td className="border border-black px-4 py-2">08152467</td>
-                <td className="border border-black px-4 py-2">Bambang@gmail.com</td>
+                <td className="border border-black px-4 py-2">{student.student_id}</td>
+                <td className="border border-black px-4 py-2">{student.student_name}</td>
+                <td className="border border-black px-4 py-2">{student.phone}</td>
+                <td className="border border-black px-4 py-2">{student.student_email}</td>
                 <td className="border border-black px-4 py-2">
                   <img src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109" alt="avatar" />
                 </td>
-                <td className="border border-black px-4 py-2">2022-01-01 00:00:00</td>
-                <td className="border border-black px-4 py-2">2022-01-01 00:00:00</td>
                 <td className="border border-black px-4 py-2  ">
                   <div className="flex justify-center ">
                     <EditStudentModal />
@@ -36,6 +46,7 @@ const StudentListTable = () => {
                   </div>
                 </td>
               </tr>
+            ))}
             </tbody>
           </table>
     </>
