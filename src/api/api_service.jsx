@@ -18,6 +18,7 @@ const apiService = {
           Authorization: `Bearer ${access_token}`,
         },
       });
+      return response.data;
     } catch (error) {
       console.error("API Error:", error);
       throw error;
