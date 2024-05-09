@@ -52,6 +52,34 @@ const apiService = {
     }
   },
 
+  async getStudents() {
+    try {
+      const response = await api.get("/students", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+  
+  async getTeachers() {
+    try {
+      const response = await api.get("/teachers", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
   async postLogin(username, role, password) {
     try {
       const response = await api.post("/login", {
