@@ -1,9 +1,10 @@
-// api/apiService.js
 import axios from "axios";
 
+const role = localStorage.getItem("role");
+const user_id = localStorage.getItem("user_id");
+const access_token = localStorage.getItem("access_token");
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTE1ODM3MSwianRpIjoiZGU5YmU1MjYtZWM3Ny00MDc3LWE1ZTMtMjYyYWNlMThkNmIyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzE1MTU4MzcxLCJjc3JmIjoiMmUzZGI1YTUtYzkzZi00OTdiLTg2NTctZTI1NTczOGFhZjU5IiwiZXhwIjoxNzE1MTU5MjcxLCJ1c2VybmFtZSI6ImlyZmFuIiwicm9sZSI6InN0dWRlbnQifQ.XqQ6HB1JeVRzxJKpkOZQY4pl-zlYNevetcUI92OnKQM";
-// Create Axios instance with base URL and default headers
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTIxNjU2MiwianRpIjoiYWEwZjM0M2YtNDZkNC00NjYwLTk3MWMtNjI2MmFkMThiNzVkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzE1MjE2NTYyLCJjc3JmIjoiMTQ0MzRhYTItNTliZS00ZjkyLTk4NzQtODE3ZmI5NDkwZjMwIiwiZXhwIjoxNzE1MjE3NDYyLCJ1c2VybmFtZSI6ImlyZmFuIiwicm9sZSI6InN0dWRlbnQifQ.RXQWUTZJyP1GHHM6Bk07VCV0SVXLsYmb-pxgOSX5mqI"; // Create Axios instance with base URL and default headers
 const api = axios.create({
   baseURL: "https://adorable-serenity-production.up.railway.app",
   headers: {
@@ -12,11 +13,11 @@ const api = axios.create({
 });
 
 const apiService = {
-  async getUserData(role, user_id) {
+  async getUserData() {
     try {
       const response = await api.get(`/${role}s/${user_id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          Authorization: `Bearer ${access_token}`,
         },
       });
     } catch (error) {
@@ -29,7 +30,7 @@ const apiService = {
     try {
       const response = await api.get("/announcement", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          Authorization: `Bearer ${access_token}`,
         },
       });
       return response.data;
@@ -39,11 +40,12 @@ const apiService = {
     }
   },
 
-  async postLogin(username, password) {
+  async postLogin(username, role, password) {
     try {
       const response = await api.post("/login", {
         input_value: username,
         password: password,
+        role_as: role,
       });
       return response.data;
     } catch (error) {
