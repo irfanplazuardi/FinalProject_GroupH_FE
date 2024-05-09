@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTE1ODM3MSwianRpIjoiZGU5YmU1MjYtZWM3Ny00MDc3LWE1ZTMtMjYyYWNlMThkNmIyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzE1MTU4MzcxLCJjc3JmIjoiMmUzZGI1YTUtYzkzZi00OTdiLTg2NTctZTI1NTczOGFhZjU5IiwiZXhwIjoxNzE1MTU5MjcxLCJ1c2VybmFtZSI6ImlyZmFuIiwicm9sZSI6InN0dWRlbnQifQ.XqQ6HB1JeVRzxJKpkOZQY4pl-zlYNevetcUI92OnKQM";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTIxOTUwNiwianRpIjoiNGIyZTMyMWYtOGNkYS00NTVkLTlkNWUtMGU2MGE5N2I3MDEyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNzE1MjE5NTA2LCJjc3JmIjoiMzY5ODNhZDItZWUwYi00ZGY4LTg0OGMtMGE2YTY5ZDEwZWVmIiwiZXhwIjoxNzE1MjIwNDA2LCJ1c2VybmFtZSI6InNhZCIsInJvbGUiOiJ0ZWFjaGVyIn0.XlCf9cpzEmgl70Xl9DzofFbxc0S8sJzckAP7hnzU_UM";
 // Create Axios instance with base URL and default headers
 const api = axios.create({
   baseURL: "https://adorable-serenity-production.up.railway.app",
@@ -29,7 +29,21 @@ const apiService = {
     try {
       const response = await api.get("/announcement", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async getCourses() {
+    try {
+      const response = await api.get("/courses", {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
       });
       return response.data;
