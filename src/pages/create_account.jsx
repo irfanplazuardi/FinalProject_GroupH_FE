@@ -5,6 +5,15 @@ import CustomInput from "../components/input_label/custom_input_label";
 import ButtonStyle from "../components/button";
 import apiService from "../api/api_service";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+
+const yupSchema = Yup.object({
+  username: Yup.string().required("Username is required"),
+  birthday: Yup.date().required("Birthday is required"),
+  phone: Yup.string().matches(/^\d+$/, "Phone number must contain only digits").min(10, "Phone number must be at least 10 numbers").required("Phone number is required"),
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+  password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+});
 
 const CreateAccount = () => {
   const [formData, setFormData] = useState({
@@ -13,9 +22,11 @@ const CreateAccount = () => {
     phone: "",
     email: "",
     password: "",
+    role: "student",
   });
   const [errors, setErrors] = useState({
     username: "",
+    phone: "",
     email: "",
     apiError: "",
   });
@@ -23,69 +34,47 @@ const CreateAccount = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-
-    // Save username in local storage
-    if (name === "username") {
-      localStorage.setItem("username", value);
-    }
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if username or email already exists
-    const usernameExists = await checkUsernameExists(formData.username);
-    const emailExists = await checkEmailExists(formData.email);
-
-    if (usernameExists) {
-      setErrors({
-        ...errors,
-        username: "Username already exists",
-        apiError: "",
-      });
-      return;
-    }
-
-    if (emailExists) {
-      setErrors({ ...errors, email: "Email already exists", apiError: "" });
-      return;
-    }
-
     try {
-      // Call the register API endpoint
+      await yupSchema.validate(formData, { abortEarly: false });
       const response = await apiService.postRegister(formData.username, formData.email, formData.birthday, formData.phone, formData.password);
-
-      // Handle the response
       console.log("Registration successful:", response);
 
-      // Auto-login after account creation
-      const loginResponse = await apiService.postLogin(formData.username, formData.password);
-      localStorage.setItem("accessToken", loginResponse.accessToken);
+      const loginResponse = await apiService.postLogin(formData.username, formData.role, formData.password);
+      console.log("Login successful:", loginResponse);
+
+      localStorage.setItem("access_token", loginResponse.access_token);
       localStorage.setItem("role", loginResponse.role);
       localStorage.setItem("user_id", loginResponse.user_id);
 
-      // Redirect to the dashboard or any other desired page
       navigate(`/dashboard/${loginResponse.role}/course`);
     } catch (error) {
-      console.error("Registration Error:", error);
-      setErrors({
-        ...errors,
-        apiError: "Failed to create account. Please try again later.",
-      });
+      if (error instanceof Yup.ValidationError) {
+        const yupErrors = {};
+        error.inner.forEach((e) => {
+          yupErrors[e.path] = e.message;
+        });
+        setErrors(yupErrors);
+      } else {
+        console.error("Registration Error:", error);
+        setErrors({
+          ...errors,
+          apiError: "Failed to create account. Please try again later.",
+        });
+      }
     }
-  };
-
-  const checkUsernameExists = async (username) => {
-    // Simulate checking if username exists in the database
-    // Replace this with your actual database check
-    return false; // Change to true if username exists
-  };
-
-  const checkEmailExists = async (email) => {
-    // Simulate checking if email exists in the database
-    // Replace this with your actual database check
-    return false; // Change to true if email exists
   };
 
   return (
@@ -112,9 +101,11 @@ const CreateAccount = () => {
             </div>
             <div className="mb-6">
               <CustomInput label="Birthday" type="date" id="birthday" name="birthday" value={formData.birthday} onChange={handleChange} className="w-full px-4 py-2 border rounded-md text-lg" />
+              {errors.birthday && <p className="text-red-500 text-sm">{errors.birthday}</p>}
             </div>
             <div className="mb-6">
               <CustomInput label="Phone Number" type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-2 border rounded-md text-lg" />
+              {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
             </div>
             <div className="mb-6">
               <CustomInput label="Email" type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border rounded-md text-lg" />
@@ -122,9 +113,10 @@ const CreateAccount = () => {
             </div>
             <div className="mb-6">
               <CustomInput label="Password" type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="w-full px-4 py-2 border rounded-md text-lg" />
+              {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
             </div>
-            {errors.apiError && <p className="text-red-500 text-sm mb-4">{errors.apiError}</p>}
             <ButtonStyle type="submit">Create Account</ButtonStyle>
+            {errors.apiError && <p className="text-red-500 text-sm mb-4">{errors.apiError}</p>}
           </form>
         </div>
       </div>

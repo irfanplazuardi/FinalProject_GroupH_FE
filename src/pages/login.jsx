@@ -9,6 +9,7 @@ import apiService from "../api/api_service";
 const Login = () => {
   const [formData, setFormData] = useState({
     username: "",
+    role: "student",
     password: "",
   });
   const [error, setError] = useState("");
@@ -28,20 +29,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform validation checks here
-    const { username, password } = formData;
+    const { username, role, password } = formData;
     // Simulate database check (replace with actual API call)
     try {
-      const response = await apiService.postLogin(username, password);
-      const { access_token, role, user_id } = response;
+      const response = await apiService.postLogin(username, role, password);
+      const { access_token, role: user_role, user_id } = response;
 
       localStorage.setItem("access_token", access_token);
-      localStorage.setItem("role", role);
+      localStorage.setItem("role", user_role);
       localStorage.setItem("user_id", user_id);
       console.log("response: ", response);
 
-      if (role === "student") {
+      if (user_role === "student") {
         navigate("/dashboard/student/course");
-      } else if (role === "teacher") {
+      } else if (user_role === "teacher") {
         navigate("/dashboard/teacher/course");
       }
     } catch (error) {
@@ -57,8 +58,7 @@ const Login = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         width: "100%",
-      }}
-    >
+      }}>
       <div>
         <VogueSchoolLogoLarge />
         <div className="w-full max-w-md bg-white bg-opacity-75 p-8 rounded-2xl shadow-lg">
@@ -74,6 +74,20 @@ const Login = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md"
               />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="role" className="block text-sm font-medium text-gray-700">
+                Select Role
+              </label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role} // Set value to formData.role
+                onChange={handleChange}
+                className="mt-1 block w-full px-4 py-2 border rounded-md bg-white">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+              </select>
             </div>
             <div className="mb-4">
               <CustomInput
