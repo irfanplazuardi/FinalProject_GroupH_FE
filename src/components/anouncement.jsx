@@ -7,10 +7,11 @@ import EditAnnouncementModal from "../components/modals/edit_announcement";
 const Announcement = () => {
   const user_role = localStorage.getItem("role");
   const [announcements, setAnnouncements] = useState([]);
+  const access_token = localStorage.getItem("access_token");
 
   useEffect(() => {
     apiService
-      .getAnnouncements()
+      .getAnnouncements(access_token)
       .then((data) => {
         setAnnouncements(data.announcements);
         console.log(data.announcements);
@@ -45,7 +46,7 @@ const Announcement = () => {
                 </p>
                 {user_role !== "student" && (
                   <div className="flex justify-between gap-4 my-7 ">
-                    <EditAnnouncementModal />
+                    <EditAnnouncementModal announcementID={announcement.announcement_id} />
                     <DeleteAnnouncement />
                   </div>
                 )}
