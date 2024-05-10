@@ -1,20 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import apiService from "../api/api_service";
 import Container from "./container";
 
 const Course = () => {
-  const subjects = ["Math", "Science", "History", "English"];
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    apiService
+      .getCourses()
+      .then((data) => {
+        setCourses(data.courses);
+      })
+      .catch((error) => {
+        console.error("Error fetching courses:", error);
+      });
+  }, []);
+
   return (
-    <Container className="grid-rows-2 ">
-      <Container className="lg:mr-[50vh] xl:mr-[70vh] pr-10">
+    <Container className="grid justify-center">
+      <Container className="pr-10">
         <h2 className="font-bold w-full pr-[120px] pt-5 dark:text-white text-3xl">
           All Course
         </h2>
       </Container>
       <Container className="grid grid-cols-2 gap-4 mt-10 mb-5">
-        {subjects.map((subject, index) => (
-          <Container key={index} className="w-full">
+        {courses.map((course) => (
+          <Container key={course.course_id} className="w-full">
             <div className="flex w-auto items-center justify-center h-[150px] rounded bg-[#D9D9D9]">
-              <p className="text-2xl text-gray-400 dark:text-gray-500">
+              <button className="text-2xl text-gray-400 dark:text-gray-500">
                 <svg
                   className="w-3.5 h-3.5"
                   aria-hidden="true"
@@ -30,9 +43,9 @@ const Course = () => {
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
-              </p>
+              </button>
             </div>
-            <h2>{subject}</h2>
+            <h2 className="dark:text-white">{course.course_name}</h2>
           </Container>
         ))}
       </Container>

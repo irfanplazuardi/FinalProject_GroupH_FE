@@ -26,7 +26,7 @@ const ListTable = () => {
           </select>
         </Container>
         <Container className="mx-2">
-        {selectedOption === "students" ? (
+          {selectedOption === "students" ? (
             <CreateStudentModal />
           ) : (
             <CreateTeacherModal />
@@ -34,7 +34,7 @@ const ListTable = () => {
         </Container>
       </Container>
       <Container className="grid grid-cols-4 grid-rows-2 gap-4 mb-4">
-        <Container className="col-span-4 row-span-2 bg-gray-200 rounded flex justify-center items-center ">
+        <Container className="col-span-4 row-span-2 bg-gray-200 rounded flex justify-center items-center dark:bg-slate-800">
           {selectedOption === "students" ? (
             <StudentListTable />
           ) : (

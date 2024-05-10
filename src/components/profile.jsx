@@ -4,10 +4,26 @@ import PopUpWindow from "./pop_up_window/pop_up_window";
 import apiService from "../api/api_service";
 
 const Profile = () => {
+  const user_role = localStorage.getItem("role");
   const [isSelectedField, setSelectedField] = useState(null);
   const [profilePicture, setProfilePicture] = useState("");
-  const [profile, setProfile] = useState([]);
-  // const user_role = localStorage.getItem("role");
+  const [dataUser, setDataUser] = useState(null);
+
+  useEffect(() => {
+    apiService
+      .getUserData()
+      .then((data) => {
+        if (user_role === "teacher") {
+          setDataUser(data.teacher);
+        } else {
+          setDataUser(data.student);
+        }
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
 
   useEffect(() => {
     const storedProfilePicture = localStorage.getItem("profilePicture");
@@ -34,13 +50,10 @@ const Profile = () => {
   };
 
   const changePicture = [{ name: "picture", label: "Upload", type: "file" }];
-
   const phoneNumberField = [
     { name: "phoneNumber", label: "New Phone Number", type: "text" },
   ];
-
-  const emailField = [{ name: "email", label: " New Email", type: "email" }];
-
+  const emailField = [{ name: "email", label: "New Email", type: "email" }];
   const passwordField = [
     { name: "password", label: "New Password", type: "password" },
   ];
@@ -64,50 +77,68 @@ const Profile = () => {
               Change
             </ButtonStyle>
           </div>
-          <div className="m-2 bg-white p-2 rounded-md">
-            <div className="font-bold mb-1 text-lg">Name of Student</div>
-            <div className="text-sm">{profile.name}</div>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md">
-            <div className="font-bold mb-1 text-lg">Birthday:</div>
-            <div className="text-sm">{profile.birthday}</div>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
-            <div className="gap-2">
-              <div className="font-bold mb-1 text-lg">Phone Number:</div>
-              <div className="text-sm">{profile.phone}</div>
-            </div>
-            <ButtonStyle
-              widthButton="24"
-              onClick={() => setSelectedField("phoneNumber")}
-            >
-              Change
-            </ButtonStyle>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
-            <div className="gap-2">
-              <div className="font-bold mb-1 text-lg">Email:</div>
-              <div className="text-sm">{profile.email}</div>
-            </div>
-            <ButtonStyle
-              widthButton="24"
-              onClick={() => setSelectedField("email")}
-            >
-              Change
-            </ButtonStyle>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
-            <div>
-              <div className="font-bold mb-1 text-lg">Password:</div>
-              <div className="text-sm">{profile.password}</div>
-            </div>
-            <ButtonStyle
-              widthButton="24"
-              onClick={() => setSelectedField("password")}
-            >
-              Change
-            </ButtonStyle>
-          </div>
+          {dataUser && (
+            <>
+              <div className="m-2 bg-white p-2 rounded-md">
+                <div className="font-bold mb-1 text-lg">
+                  Name of {user_role === "student" ? "Student" : "Teacher"}
+                </div>
+                <div className="text-sm">
+                  {user_role === "teacher"
+                    ? dataUser.teacher_name
+                    : dataUser.student_name}
+                </div>
+              </div>
+              <div className="m-2 bg-white p-2 rounded-md">
+                <div className="font-bold mb-1 text-lg">Birthday:</div>
+                <div className="text-sm">
+                  {user_role === "teacher"
+                    ? dataUser.teacher_birthday
+                    : dataUser.student_birthday}
+                </div>
+              </div>
+              <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
+                <div className="gap-2">
+                  <div className="font-bold mb-1 text-lg">Phone Number:</div>
+                  <div className="text-sm">{dataUser.phone}</div>
+                </div>
+                <ButtonStyle
+                  widthButton="24"
+                  onClick={() => setSelectedField("phoneNumber")}
+                >
+                  Change
+                </ButtonStyle>
+              </div>
+              <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
+                <div className="gap-2">
+                  <div className="font-bold mb-1 text-lg">Email:</div>
+                  <div className="text-sm">
+                    {user_role === "teacher"
+                      ? dataUser.teacher_email
+                      : dataUser.student_email}
+                  </div>
+                </div>
+                <ButtonStyle
+                  widthButton="24"
+                  onClick={() => setSelectedField("email")}
+                >
+                  Change
+                </ButtonStyle>
+              </div>
+              <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
+                <div>
+                  <div className="font-bold mb-1 text-lg">Password:</div>
+                  <div className="text-sm">********</div>
+                </div>
+                <ButtonStyle
+                  widthButton="24"
+                  onClick={() => setSelectedField("password")}
+                >
+                  Change
+                </ButtonStyle>
+              </div>
+            </>
+          )}
         </div>
       </div>
       {/* Pop-up windows for editing profile fields */}

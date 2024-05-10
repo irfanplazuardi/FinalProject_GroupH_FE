@@ -10,6 +10,7 @@ import {
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+
 export default function Sidebar() {
   const course_icon = <FontAwesomeIcon icon={faBook} />;
   const bel_icon = <FontAwesomeIcon icon={faBell} />;
@@ -63,7 +64,7 @@ export default function Sidebar() {
         className="fixed w-64 transition-transform -translate-x-full sm:translate-x-0 bg-[#D9D9D9] outline-none dark:bg-slate-500 "
         aria-label="Sidebar"
       >
-        <div className="h-screen px-3 py-4 ml-4 mt-3 overflow-y-auto rounded-3xl bg-gray-400 dark:bg-slate-800 xl:h-screen lg:h-screen md:screen">
+        <div className="h-screen px-3 py-4 ml-4 m-3 overflow-y-auto rounded-3xl bg-gray-400 dark:bg-slate-800 xl:max-h-screen lg:h-screen md:h-screen sm:h-screen">
           <Link className="flex items-center ps-9 mb-5" to="/dashboard/:role">
             <VogueSchoolLogoSmall />
           </Link>

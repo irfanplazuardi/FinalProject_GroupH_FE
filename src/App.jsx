@@ -59,16 +59,16 @@ function App() {
         <Route path="/testenv" element={<TestPage />}></Route>
         <Route path="*" element={<ErrorPage />} />
 
-        {/* <Route element={<ProtectedRoutes />}> */}
-        <Route path="/dashboard/:role" element={<DashboardRouter />}>
-          <Route path="course" element={<Course />} />
-          <Route path="announcement" element={<Announcement />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="create-course" element={<CourseTable />} />
-          <Route path="member-list" element={<ListTable />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/dashboard/:role" element={<DashboardRouter />}>
+            <Route path="course" element={<Course />} />
+            <Route path="announcement" element={<Announcement />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="create-course" element={<CourseTable />} />
+            <Route path="member-list" element={<ListTable />} />
+          </Route>
         </Route>
-        {/* </Route> */}
       </Routes>
     </Router>
   );
