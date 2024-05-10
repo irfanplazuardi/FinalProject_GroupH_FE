@@ -3,10 +3,10 @@ import EditTeacherModal from "../modals/edit_teacher";
 
 const TeacherListTable = () => {
   return (
-    <>
-      <table className="border border-black m-10">
+    <div className="overflow-auto ">
+      <table className="border border-black m-10 dark:border-white">
         <thead>
-          <tr className="bg-gray-300 text-black">
+          <tr className="bg-gray-300 text-black dark:text-white dark:bg-slate-600">
             <th className="border border-black px-4 py-2">ID</th>
             <th className="border border-black px-4 py-2">NAME</th>
             <th className="border border-black px-4 py-2">PHONE</th>
@@ -18,7 +18,7 @@ const TeacherListTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white">
+          <tr className="bg-white dark:bg-slate-400">
             <td className="border border-black px-4 py-2">1</td>
             <td className="border border-black px-4 py-2">Rudi</td>
             <td className="border border-black px-4 py-2">08543671</td>
@@ -36,7 +36,7 @@ const TeacherListTable = () => {
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

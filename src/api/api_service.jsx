@@ -101,7 +101,7 @@ const apiService = {
       throw error;
     }
   },
-
+  
   async deleteAnnouncementID(announcement_id, access_token) {
     try {
       const response = await api.delete(`/announcement/${announcement_id}`, {
@@ -110,6 +110,7 @@ const apiService = {
         },
       });
       return response.data;
+
     } catch (error) {
       console.error("API Error:", error);
       throw error;
