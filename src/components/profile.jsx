@@ -8,10 +8,12 @@ const Profile = () => {
   const [isSelectedField, setSelectedField] = useState(null);
   const [profilePicture, setProfilePicture] = useState("");
   const [dataUser, setDataUser] = useState(null);
+  const access_token = localStorage.getItem("access_token");
+  const user_id = localStorage.getItem("user_id");
 
   useEffect(() => {
     apiService
-      .getUserData()
+      .getUserData(access_token, user_role, user_id)
       .then((data) => {
         if (user_role === "teacher") {
           setDataUser(data.teacher);
