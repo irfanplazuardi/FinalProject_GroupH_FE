@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import apiService from "../../api/api_service";
 import EditStudentModal from "../modals/edit_student";
+import DeleteStudent from "../modals/delete_student";
 
 const StudentListTable = () => {
   const [students, setStudents] = useState([]);
@@ -53,7 +54,7 @@ const StudentListTable = () => {
                 <td className="border border-black px-4 py-2  ">
                   <div className="flex justify-center ">
                     <EditStudentModal studentID={student.student_id} />
-                    <DeleteModal />
+                    <DeleteStudent  studentID={student.student_id} />
                   </div>
                 </td>
               </tr>
