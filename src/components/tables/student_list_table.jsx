@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import apiService from "../../api/api_service";
 import EditStudentModal from "../modals/edit_student";
+import React from "react";
+import EditStudentModal from "../modals/edit_student";
 import DeleteModal from "../modals/delete_course";
 
 const StudentListTable = () => {
@@ -36,11 +38,16 @@ const StudentListTable = () => {
                 <td className="border border-black px-4 py-2">{student.student_name}</td>
                 <td className="border border-black px-4 py-2">{student.phone}</td>
                 <td className="border border-black px-4 py-2">{student.student_email}</td>
+                <td className="border border-black px-4 py-2">1</td>
+                <td className="border border-black px-4 py-2">Bambang</td>
+                <td className="border border-black px-4 py-2">08152467</td>
+                <td className="border border-black px-4 py-2">Bambang@gmail.com</td>
                 <td className="border border-black px-4 py-2">
                   <img src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109" alt="avatar" />
                 </td>
                 <td className="border border-black px-4 py-2  ">
                   <div className="flex justify-center ">
+                    <EditStudentModal />
                     <EditStudentModal />
                     <DeleteModal />
                   </div>

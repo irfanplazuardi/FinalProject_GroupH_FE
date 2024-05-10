@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Container from "../container";
 import StudentListTable from "./student_list_table";
 import TeacherListTable from "./teacher_list_table";
+import CreateStudentModal from "../modals/create_student";
 import CreateTeacherModal from "../modals/create_teacher";
 
 const ListTable = () => {
@@ -26,7 +27,7 @@ const ListTable = () => {
         </Container>
         <Container className="mx-2">
         {selectedOption === "students" ? (
-            ""
+            <CreateStudentModal />
           ) : (
             <CreateTeacherModal />
           )}
