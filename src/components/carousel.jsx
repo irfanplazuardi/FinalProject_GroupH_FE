@@ -39,14 +39,25 @@ const Carousel = () => {
   };
 
   return (
-    <div className="box-border w-[90rem] h-[40rem] bg-slate-100 px-12 py-10 shadow-2xl rounded-2xl m-auto overflow-hidden relative">
-      <div className="max-w-[1400px] h-[35rem] w-full m-auto relative ">
+    <div className="box-border bg-slate-100 px-2 sm:p-7 py-4 shadow-2xl rounded-2xl overflow-hidden relative lg:p-7 md:p-7">
+      <div className="max-w-[1400px] h-[35rem] w-full m-auto relative gap-3">
         <div className="relative w-full h-full rounded-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-center bg-cover duration-500" style={{ backgroundImage: `url(${slides[currentIndex]})` }}></div>
+          <div
+            className="absolute inset-0 bg-center bg-cover duration-500"
+            style={{ backgroundImage: `url(${slides[currentIndex]})` }}
+          ></div>
         </div>
-        <div className="absolute bottom left-0 right-0 flex justify-center">
+        <div className="absolute left-0 right-0 flex justify-center">
           {slides.map((slide, slideIndex) => (
-            <div key={slideIndex} onClick={() => goToSlide(slideIndex)} className={`text-4xl cursor-pointer ${slideIndex === currentIndex ? "text-yellow-500" : "text-gray-500"}`}>
+            <div
+              key={slideIndex}
+              onClick={() => goToSlide(slideIndex)}
+              className={`text-4xl cursor-pointer ${
+                slideIndex === currentIndex
+                  ? "text-yellow-500"
+                  : "text-gray-500"
+              }`}
+            >
               <RxDotFilled />
             </div>
           ))}

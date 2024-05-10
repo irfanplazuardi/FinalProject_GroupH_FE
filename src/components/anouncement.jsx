@@ -24,18 +24,26 @@ const Announcement = () => {
   return (
     <Container className="flex flex-col items-center">
       <div className="text-center mb-8">
-        <h2 className="font-bold text-5xl p-5">Announcements</h2>
+        <h2 className="font-bold text-3xl p-5 dark:text-white md:text-2xl">
+          Announcements
+        </h2>
       </div>
       <Container className="mb-8">
         {announcements.map((announcement) => (
-          <Container key={announcement.announcement_id} className="w-[80%] mx-auto mb-4">
-            <div className="border rounded-lg p-4 bg-[#D9D9D9]">
-              <div className="flex justify-between">
-                <h3 className="font-bold text-lg">{announcement.created_by}</h3>
-                <p className="text-md font-italic">{announcement.created_at}</p>
+          <Container key={announcement.announcement_id} className="mb-4">
+            <div className="rounded-lg p-3 bg-[#D9D9D9] md:p-2 sm:p-1 xl:w-[70vh] lg:w-[40vh]">
+              <div className="flex justify-between items-center md:gap-2 sm:gap-1">
+                <h3 className="font-bold text-xl lg:text-xl xl:text-lg md:text-md sm:text-xs">
+                  {announcement.created_by}
+                </h3>
+                <p className="text-sm md:text-xs sm:text-xs">
+                  {announcement.created_at}
+                </p>
               </div>
-              <div className="flex justify-between">
-                <p className="mr-10">{announcement.announcement_desc}</p>
+              <div className="flex justify-between py-2">
+                <p className="mr-10 text-md">
+                  {announcement.announcement_desc}
+                </p>
                 {user_role !== "student" && (
                   <div className="flex justify-between gap-4 my-7 ">
                     <EditAnnouncementModal announcementID={announcement.announcement_id} />

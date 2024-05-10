@@ -103,6 +103,19 @@ const apiService = {
     }
   },
 
+  async getProfileData() {
+    try {
+      const response = await api.get(`/${role}s/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
   // Add more methods as needed (PUT, DELETE, etc.)
 };
 

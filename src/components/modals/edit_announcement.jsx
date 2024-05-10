@@ -12,6 +12,7 @@ const EditAnnouncementModal = ({ announcementID }) => {
     setIsOpen(!isOpen);
   };
 
+
   const handleUpdate = async () => {
     try {
       // Call putAnnouncementID method with the announcement ID and updated announcement text

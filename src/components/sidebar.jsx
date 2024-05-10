@@ -4,6 +4,7 @@ import VogueSchoolLogoSmall from "./logo_small";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faBell, faCircleUser, faGear, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+
 export default function Sidebar() {
   const course_icon = <FontAwesomeIcon icon={faBook} />;
   const bel_icon = <FontAwesomeIcon icon={faBell} />;
@@ -58,7 +59,7 @@ export default function Sidebar() {
           <Link className="flex items-center ps-9 mb-5" to="/dashboard/:role">
             <VogueSchoolLogoSmall />
           </Link>
-          <ul className="space-y-2 font-medium flex flex-col justify-between md:h-[82%] xl:h-[84%]">
+          <ul className="font-medium flex flex-col justify-between md:h-[82%] xl:h-[84%]">
             <div>
               <li onClick={navigateToCourse}>
                 <Link to="/dashboard/:role" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
