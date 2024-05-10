@@ -1,8 +1,5 @@
 import axios from "axios";
 
-const role = localStorage.getItem("role");
-const user_id = localStorage.getItem("user_id");
-const access_token = localStorage.getItem("access_token");
 const api = axios.create({
   baseURL: "https://adorable-serenity-production.up.railway.app",
   headers: {
@@ -11,7 +8,8 @@ const api = axios.create({
 });
 
 const apiService = {
-  async getUserData() {
+
+  async getUserData(access_token, role, user_id) {
     try {
       const response = await api.get(`/${role}s/${user_id}`, {
         headers: {
@@ -25,7 +23,7 @@ const apiService = {
     }
   },
 
-  async getAnnouncements() {
+  async getAnnouncements(access_token) {
     try {
       const response = await api.get("/announcement", {
         headers: {
@@ -39,8 +37,29 @@ const apiService = {
     }
   },
 
-  async getCourses() {
+  async putAnnouncementID(announcement_id, update_announcement, access_token) {
     try {
+      const response = await api.put(
+        `/announcement/${announcement_id}`,
+        {
+          announcement_desc: update_announcement,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async getCourses(access_token) {
+    try {
+      console.log("access_token:", access_token);
       const response = await api.get("/courses", {
         headers: {
           Authorization: `Bearer ${access_token}`,
