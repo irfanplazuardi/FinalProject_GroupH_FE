@@ -5,10 +5,11 @@ import DeleteModal from "../modals/delete_course";
 
 const TeacherListTable = () => {
   const [teachers, setTeachers] = useState([]);
+  const access_token = localStorage.getItem("access_token");
 
   useEffect(() => {
     apiService
-      .getTeachers()
+      .getTeachers(access_token)
       .then((data) => {
         setTeachers(data.teachers);
       })
@@ -32,7 +33,7 @@ const TeacherListTable = () => {
         </thead>
         <tbody>
           {teachers.map((teacher) => (
-            <tr className="bg-white">
+            <tr key={teacher.teacher_id} className="bg-white">
               <td className="border border-black px-4 py-2">
                 {teacher.teacher_id}
               </td>
@@ -51,7 +52,7 @@ const TeacherListTable = () => {
               </td>
               <td className="border border-black px-4 py-2  ">
                 <div className="flex justify-center ">
-                  <EditTeacherModal />
+                  <EditTeacherModal teacherID={teacher.teacher_id}/>
                   <DeleteModal />
                 </div>
               </td>
