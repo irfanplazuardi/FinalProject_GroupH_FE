@@ -55,6 +55,7 @@ export default function Sidebar() {
   const logout = () => {
     localStorage.clear();
     navigate("/");
+    window.location.reload();
   };
 
   return (
