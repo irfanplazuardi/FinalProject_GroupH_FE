@@ -17,16 +17,14 @@ const Course = () => {
   }, []);
 
   return (
-    <Container className="grid justify-center">
-      <Container className="pr-10">
-        <h2 className="font-bold w-full pr-[120px] pt-5 dark:text-white text-3xl">
-          All Course
-        </h2>
-      </Container>
-      <Container className="grid grid-cols-2 gap-4 mt-10 mb-5">
+    <div className="justify-center xl:w-[90vh] lg:w-[70vh] ">
+      <h2 className="font-bold dark:text-white text-3xl text-center pt-3">
+        All Courses
+      </h2>
+      <Container className="grid grid-cols-2 gap-3 p-2 sm:grid-cols-2">
         {courses.map((course) => (
-          <Container key={course.course_id} className="w-full">
-            <div className="flex w-auto items-center justify-center h-[150px] rounded bg-[#D9D9D9]">
+          <Container key={course.course_id} className="w-full p-3">
+            <div className="flex w-auto sm:gap-3 md:gap-3 items-center justify-center h-[150px] rounded bg-[#D9D9D9]">
               <button className="text-2xl text-gray-400 dark:text-gray-500">
                 <svg
                   className="w-3.5 h-3.5"
@@ -49,7 +47,7 @@ const Course = () => {
           </Container>
         ))}
       </Container>
-    </Container>
+    </div>
   );
 };
 

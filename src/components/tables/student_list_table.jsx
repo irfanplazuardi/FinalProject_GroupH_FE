@@ -4,7 +4,7 @@ import DeleteModal from "../modals/delete_course";
 
 const StudentListTable = () => {
   return (
-    <>
+    <div>
       <table className="border border-black m-10 dark:border-white">
         <thead>
           <tr className="bg-gray-300 text-black dark:text-white dark:bg-slate-600">
@@ -45,7 +45,7 @@ const StudentListTable = () => {
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

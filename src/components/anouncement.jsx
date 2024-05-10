@@ -23,7 +23,7 @@ const Announcement = () => {
   return (
     <Container className="flex flex-col items-center">
       <div className="text-center mb-8">
-        <h2 className="font-bold text-3xl p-5 dark:text-white">
+        <h2 className="font-bold text-3xl p-5 dark:text-white md:text-2xl">
           Announcements
         </h2>
       </div>
@@ -34,11 +34,15 @@ const Announcement = () => {
             className="w-[80%] mx-auto mb-4"
           >
             <div className="border rounded-lg p-4 bg-[#D9D9D9]">
-              <div className="flex justify-between">
-                <h3 className="font-bold text-lg">{announcement.created_by}</h3>
-                <p className="text-md font-italic">{announcement.created_at}</p>
+              <div className="flex justify-between items-center">
+                <h3 className="font-bold text-xl lg:text-xl xl:text-lg md:text-sm sm:text-[18px]">
+                  {announcement.created_by}
+                </h3>
+                <p className="font-italic md:text-xs sm:text-xs">
+                  {announcement.created_at}
+                </p>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between py-2">
                 <p className="mr-10">{announcement.announcement_desc}</p>
                 {user_role !== "student" && (
                   <div className="flex justify-between gap-4 my-7 ">
