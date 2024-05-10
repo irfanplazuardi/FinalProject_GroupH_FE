@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import apiService from "../../api/api_service";
 import EditTeacherModal from "../modals/edit_teacher";
-import DeleteModal from "../modals/delete_course";
 
 const TeacherListTable = () => {
   const [teachers, setTeachers] = useState([]);
@@ -19,10 +18,10 @@ const TeacherListTable = () => {
   }, []);
 
   return (
-    <>
-      <table className="border border-black m-10">
+    <div className="overflow-auto ">
+      <table className="border border-black m-10 dark:border-white">
         <thead>
-          <tr className="bg-gray-300 text-black">
+          <tr className="bg-gray-300 text-black dark:text-white dark:bg-slate-600">
             <th className="border border-black px-4 py-2">ID</th>
             <th className="border border-black px-4 py-2">NAME</th>
             <th className="border border-black px-4 py-2">PHONE</th>
@@ -60,7 +59,7 @@ const TeacherListTable = () => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

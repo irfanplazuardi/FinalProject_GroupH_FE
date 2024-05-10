@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import apiService from "../../api/api_service";
 import EditStudentModal from "../modals/edit_student";
-import DeleteModal from "../modals/delete_course";
 
 const StudentListTable = () => {
   const [students, setStudents] = useState([]);
