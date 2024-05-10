@@ -145,6 +145,29 @@ const apiService = {
     }
   },
 
+  async putCourseID(course_id, update_course_name, update_course_grade, update_course_subject, update_course_desc, access_token) {
+    try {
+      const response = await api.put(
+        `/courses/${course_id}`,
+        {
+          course_name: update_course_name, 
+          course_grade: update_course_grade, 
+          course_subjects: update_course_subject, 
+          course_description: update_course_desc 
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
   async postLogin(username, role, password) {
     try {
       const response = await api.post("/login", {
