@@ -1,10 +1,31 @@
 import React, { useState, useEffect } from "react";
 import ButtonStyle from "./button";
 import PopUpWindow from "./pop_up_window/pop_up_window";
+import apiService from "../api/api_service";
 
 const Profile = () => {
+  const user_role = localStorage.getItem("role");
   const [isSelectedField, setSelectedField] = useState(null);
   const [profilePicture, setProfilePicture] = useState("");
+  const [dataUser, setDataUser] = useState(null);
+  const access_token = localStorage.getItem("access_token");
+  const user_id = localStorage.getItem("user_id");
+
+  useEffect(() => {
+    apiService
+      .getUserData(access_token, user_role, user_id)
+      .then((data) => {
+        if (user_role === "teacher") {
+          setDataUser(data.teacher);
+        } else {
+          setDataUser(data.student);
+        }
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
 
   useEffect(() => {
     const storedProfilePicture = localStorage.getItem("profilePicture");
@@ -24,16 +45,9 @@ const Profile = () => {
   };
 
   const changePicture = [{ name: "picture", label: "Upload", type: "file" }];
-
-  const phoneNumberField = [
-    { name: "phoneNumber", label: "New Phone Number", type: "text" },
-  ];
-
-  const emailField = [{ name: "email", label: " New Email", type: "email" }];
-
-  const passwordField = [
-    { name: "password", label: "New Password", type: "password" },
-  ];
+  const phoneNumberField = [{ name: "phoneNumber", label: "New Phone Number", type: "text" }];
+  const emailField = [{ name: "email", label: "New Email", type: "email" }];
+  const passwordField = [{ name: "password", label: "New Password", type: "password" }];
 
   return (
     <div className="xl:h-[80vh] md:h-[50vh]">
@@ -41,111 +55,64 @@ const Profile = () => {
         <h2 className="font-bold text-3xl dark:text-white">Profile</h2>
         <div className="m-4 bg-[#D9D9D9] rounded-xl xl:w-[80vh] my-3">
           <div className="m-2 bg-[#D9D9D9] rounded-lg flex flex-col items-center justify-center gap-2">
-            <img
-              src={profilePicture}
-              alt="user photo"
-              className="w-20 h-20 rounded-xl mt-2"
-            />
-            <ButtonStyle
-              className="w-20 m-2 mx-10"
-              onClick={() => setSelectedField("picture")}
-              widthButton="24"
-            >
+            <img src={profilePicture} alt="user photo" className="w-20 h-20 rounded-xl mt-2" />
+            <ButtonStyle className="w-20 m-2 mx-10" onClick={() => setSelectedField("picture")} widthButton="24">
               Change
             </ButtonStyle>
           </div>
-          <div className="m-2 bg-white p-2 rounded-md">
-            <div className="font-bold mb-1 text-lg dark:text-gray-400">
-              Name of Student
-            </div>
-            <div className="text-sm">Conan Kun</div>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md">
-            <div className="font-bold mb-1 text-lg">Birthday:</div>
-            <div className="text-sm">January 1, 1997</div>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
-            <div className="gap-2">
-              <div className="font-bold mb-1 text-lg">Phone Number:</div>
-              <div className="text-sm">+628222334456</div>
-            </div>
-            <ButtonStyle
-              widthButton="24"
-              onClick={() => setSelectedField("phoneNumber")}
-            >
-              Change
-            </ButtonStyle>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
-            <div className="gap-2">
-              <div className="font-bold mb-1 text-lg">Email:</div>
-              <div className="text-sm">conankun@gmail.com</div>
-            </div>
-            <ButtonStyle
-              widthButton="24"
-              onClick={() => setSelectedField("email")}
-            >
-              Change
-            </ButtonStyle>
-          </div>
-          <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
-            <div>
-              <div className="font-bold mb-1 text-lg">Password:</div>
-              <div className="text-sm">********</div>
-            </div>
-            <ButtonStyle
-              widthButton="24"
-              onClick={() => setSelectedField("password")}
-            >
-              Change
-            </ButtonStyle>
-          </div>
+          {dataUser && (
+            <>
+              <div className="m-2 bg-white p-2 rounded-md">
+                <div className="font-bold mb-1 text-lg dark:text-gray-400">Name of {user_role === "student" ? "Student" : "Teacher"}</div>
+                <div className="text-sm">{user_role === "teacher" ? dataUser.teacher_name : dataUser.student_name}</div>
+              </div>
+              <div className="m-2 bg-white p-2 rounded-md">
+                <div className="font-bold mb-1 text-lg">Birthday:</div>
+                <div className="text-sm">{user_role === "teacher" ? dataUser.teacher_birthday : dataUser.student_birthday}</div>
+              </div>
+              <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
+                <div className="gap-2">
+                  <div className="font-bold mb-1 text-lg">Phone Number:</div>
+                  <div className="text-sm">{dataUser.phone}</div>
+                </div>
+                <ButtonStyle widthButton="24" onClick={() => setSelectedField("phoneNumber")}>
+                  Change
+                </ButtonStyle>
+              </div>
+              <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
+                <div className="gap-2">
+                  <div className="font-bold mb-1 text-lg">Email:</div>
+                  <div className="text-sm">{user_role === "teacher" ? dataUser.teacher_email : dataUser.student_email}</div>
+                </div>
+                <ButtonStyle widthButton="24" onClick={() => setSelectedField("email")}>
+                  Change
+                </ButtonStyle>
+              </div>
+              <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
+                <div>
+                  <div className="font-bold mb-1 text-lg">Password:</div>
+                  <div className="text-sm">********</div>
+                </div>
+                <ButtonStyle widthButton="24" onClick={() => setSelectedField("password")}>
+                  Change
+                </ButtonStyle>
+              </div>
+            </>
+          )}
         </div>
       </div>
       {/* Pop-up windows for editing profile fields */}
       {isSelectedField === "picture" && (
-        <PopUpWindow
-          isOpen={true}
-          onClose={() => setSelectedField(null)}
-          onSubmit={handleSubmit}
-          title="Change Profile Picture"
-          validationText="Are you sure want to change your profile picture?"
-          buttonLeft="Yes"
-          fields={changePicture}
-        />
+        <PopUpWindow isOpen={true} onClose={() => setSelectedField(null)} onSubmit={handleSubmit} title="Change Profile Picture" validationText="Are you sure want to change your profile picture?" buttonLeft="Yes" fields={changePicture} />
       )}
       {isSelectedField === "phoneNumber" && (
-        <PopUpWindow
-          isOpen={true}
-          onClose={() => setSelectedField(null)}
-          onSubmit={handleSubmit}
-          title="Change Phone Number"
-          validationText="Are you sure want to change your phone number?"
-          buttonLeft="Yes"
-          fields={phoneNumberField}
-        />
+        <PopUpWindow isOpen={true} onClose={() => setSelectedField(null)} onSubmit={handleSubmit} title="Change Phone Number" validationText="Are you sure want to change your phone number?" buttonLeft="Yes" fields={phoneNumberField} />
       )}
       {isSelectedField === "email" && (
-        <PopUpWindow
-          isOpen={true}
-          onClose={() => setSelectedField(null)}
-          onSubmit={handleSubmit}
-          title="Change Email"
-          validationText="Are you sure want to change your email?"
-          buttonLeft="Yes"
-          fields={emailField}
-        />
+        <PopUpWindow isOpen={true} onClose={() => setSelectedField(null)} onSubmit={handleSubmit} title="Change Email" validationText="Are you sure want to change your email?" buttonLeft="Yes" fields={emailField} />
       )}
       {isSelectedField === "password" && (
-        <PopUpWindow
-          isOpen={true}
-          onClose={() => setSelectedField(null)}
-          onSubmit={handleSubmit}
-          title="Change Password"
-          validationText="Are you sure want to change your password?"
-          buttonLeft="Yes"
-          fields={passwordField}
-        />
+        <PopUpWindow isOpen={true} onClose={() => setSelectedField(null)} onSubmit={handleSubmit} title="Change Password" validationText="Are you sure want to change your password?" buttonLeft="Yes" fields={passwordField} />
       )}
     </div>
   );

@@ -1,9 +1,5 @@
-// api/apiService.js
 import axios from "axios";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTE1ODM3MSwianRpIjoiZGU5YmU1MjYtZWM3Ny00MDc3LWE1ZTMtMjYyYWNlMThkNmIyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzE1MTU4MzcxLCJjc3JmIjoiMmUzZGI1YTUtYzkzZi00OTdiLTg2NTctZTI1NTczOGFhZjU5IiwiZXhwIjoxNzE1MTU5MjcxLCJ1c2VybmFtZSI6ImlyZmFuIiwicm9sZSI6InN0dWRlbnQifQ.XqQ6HB1JeVRzxJKpkOZQY4pl-zlYNevetcUI92OnKQM";
-// Create Axios instance with base URL and default headers
 const api = axios.create({
   baseURL: "https://adorable-serenity-production.up.railway.app",
   headers: {
@@ -12,24 +8,11 @@ const api = axios.create({
 });
 
 const apiService = {
-  async getUserData(role, user_id) {
+  async getUserData(access_token, role, user_id) {
     try {
       const response = await api.get(`/${role}s/${user_id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      });
-    } catch (error) {
-      console.error("API Error:", error);
-      throw error;
-    }
-  },
-
-  async getAnnouncements() {
-    try {
-      const response = await api.get("/announcement", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          Authorization: `Bearer ${access_token}`,
         },
       });
       return response.data;
@@ -39,11 +22,61 @@ const apiService = {
     }
   },
 
-  async postLogin(username, password) {
+  async getAnnouncements(access_token) {
+    try {
+      const response = await api.get("/announcement", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async putAnnouncementID(announcement_id, update_announcement, access_token) {
+    try {
+      const response = await api.put(
+        `/announcement/${announcement_id}`,
+        {
+          announcement_desc: update_announcement,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async getCourses(access_token) {
+    try {
+      console.log("access_token:", access_token);
+      const response = await api.get("/courses", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async postLogin(username, role, password) {
     try {
       const response = await api.post("/login", {
         input_value: username,
         password: password,
+        role_as: role,
       });
       return response.data;
     } catch (error) {
