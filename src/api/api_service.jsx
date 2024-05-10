@@ -8,6 +8,7 @@ const api = axios.create({
 });
 
 const apiService = {
+
   async getUserData(access_token, role, user_id) {
     try {
       const response = await api.get(`/${role}s/${user_id}`, {
