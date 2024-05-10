@@ -23,7 +23,7 @@ const Profile = () => {
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, []);
+  }, [user_role]);
 
   useEffect(() => {
     const storedProfilePicture = localStorage.getItem("profilePicture");
