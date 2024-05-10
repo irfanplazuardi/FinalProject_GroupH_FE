@@ -7,10 +7,11 @@ import DeleteModal from "../modals/delete_course";
 
 const CourseTable = () => {
   const [courses, setCourses] = useState([]);
+  const access_token = localStorage.getItem("access_token");
 
   useEffect(() => {
     apiService
-      .getCourses()
+      .getCourses(access_token)
       .then((data) => {
         setCourses(data.courses);
       })
@@ -49,7 +50,7 @@ const CourseTable = () => {
             </thead>
             <tbody>
               {courses.map((course) => (
-                <tr className="bg-white">
+                <tr key={course.course_id} className="bg-white">
                 <td className="border border-black px-4 py-2">{course.course_id}</td>
                 <td className="border border-black px-4 py-2">{course.course_name}</td>
                 <td className="border border-black px-4 py-2">{course.course_subjects}</td>
@@ -60,7 +61,7 @@ const CourseTable = () => {
                 <td className="border border-black px-4 py-2">{course.course_description}</td>
                 <td className="border border-black px-4 py-2  ">
                   <div className="flex justify-center ">
-                    <EditCourseModal />
+                    <EditCourseModal courseID={course.course_id}/>
                     <DeleteModal />
                   </div>
                 </td>
