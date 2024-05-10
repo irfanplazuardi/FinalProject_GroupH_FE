@@ -2,7 +2,6 @@ import React from "react";
 import Container from "../container";
 import AddCourseModal from "../modals/create_course";
 import EditCourseModal from "../modals/edit_course";
-import DeleteModal from "../modals/delete_course";
 
 const CourseTable = () => {
   return (
@@ -63,7 +62,6 @@ const CourseTable = () => {
                 <td className="border border-black px-4 py-2  ">
                   <div className="flex justify-center ">
                     <EditCourseModal />
-                    <DeleteModal />
                   </div>
                 </td>
               </tr>

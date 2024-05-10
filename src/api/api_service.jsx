@@ -102,6 +102,20 @@ const apiService = {
     }
   },
 
+  async deleteAnnouncementID(announcement_id, access_token) {
+    try {
+      const response = await api.delete(`/announcement/${announcement_id}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
   // Add more methods as needed (PUT, DELETE, etc.)
 };
 

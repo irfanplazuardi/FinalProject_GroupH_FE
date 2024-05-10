@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Container from "./container";
 import apiService from "../api/api_service";
-import DeleteAnnouncement from "../components/modals/delete_course";
+import DeleteAnnouncement from "./modals/delete_announcement";
 import EditAnnouncementModal from "../components/modals/edit_announcement";
 
 const Announcement = () => {
@@ -39,7 +39,7 @@ const Announcement = () => {
                 {user_role !== "student" && (
                   <div className="flex justify-between gap-4 my-7 ">
                     <EditAnnouncementModal announcementID={announcement.announcement_id} />
-                    <DeleteAnnouncement />
+                    <DeleteAnnouncement announcementID={announcement.announcement_id} />
                   </div>
                 )}
               </div>
