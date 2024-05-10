@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import ButtonStyle from "./button";
-import PopUpWindowUpdate from "./pop_up_window/update_pop_up_window";
 import { useNavigate } from "react-router-dom";
+import CreateAnnouncementModal from "./modals/create-announcement";
 
 const ControllerButton = () => {
   const [isAnnouncementOpen, setAnnouncementOpen] = useState(false);
-  const handleAnnouncementSubmit = (formData) => {
-    console.log("Announcement Submitted", formData);
-    setAnnouncementOpen(false);
-  };
+
   const announcementFields = [{ name: "announcement", label: "Announcement", type: "text" }];
 
   const navigate = useNavigate();
@@ -29,20 +26,11 @@ const ControllerButton = () => {
         <ButtonStyle onClick={navigateToNewCourse}>Make New Course</ButtonStyle>
       </div>
       <div className="flex items-center justify-center h-12 lg:text-sm xl:text-xl rounded-3xl">
-        <ButtonStyle onClick={() => setAnnouncementOpen(true)}>New Announcement</ButtonStyle>
+        <CreateAnnouncementModal />
       </div>
       <div className="flex items-center justify-center h-12 lg:text-sm xl:text-xl rounded-3xl">
         <ButtonStyle onClick={navigateToMemberList}>Student / Teacher List</ButtonStyle>
       </div>
-      <PopUpWindowUpdate
-        isOpen={isAnnouncementOpen}
-        onClose={() => setAnnouncementOpen(false)}
-        onSubmit={handleAnnouncementSubmit}
-        title="New Announcement"
-        validationText="Are you sure want to announce this?"
-        buttonLeft="Yes"
-        fields={announcementFields}
-      />
     </div>
   );
 };

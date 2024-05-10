@@ -22,6 +22,26 @@ const apiService = {
     }
   },
 
+  async putUserDataPhone(user_id, update_user, access_token) {
+    try {
+      const response = await api.put(
+        `/${update_user.role}s/${user_id}`,
+        {
+          phone: update_user,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
   async getAnnouncements(access_token) {
     try {
       const response = await api.get("/announcement", {
@@ -101,7 +121,7 @@ const apiService = {
       throw error;
     }
   },
-  
+
   async deleteAnnouncementID(announcement_id, access_token) {
     try {
       const response = await api.delete(`/announcement/${announcement_id}`, {
@@ -110,7 +130,26 @@ const apiService = {
         },
       });
       return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
 
+  async postAnnouncement(announcement_desc, access_token) {
+    try {
+      const response = await api.post(
+        "/announcement",
+        {
+          announcement_desc: announcement_desc,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
     } catch (error) {
       console.error("API Error:", error);
       throw error;
