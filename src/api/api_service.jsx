@@ -38,14 +38,17 @@ const apiService = {
 
   async putAnnouncementID(announcement_id, update_announcement, access_token) {
     try {
-      const response = await api.put(`/announcement/${announcement_id}`, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-        data: {
+      const response = await api.put(
+        `/announcement/${announcement_id}`,
+        {
           announcement_desc: update_announcement,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error("API Error:", error);

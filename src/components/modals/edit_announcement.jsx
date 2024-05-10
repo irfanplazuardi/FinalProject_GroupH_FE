@@ -6,7 +6,6 @@ import apiService from "../../api/api_service";
 const EditAnnouncementModal = ({ announcementID }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [updatedAnnouncement, setUpdatedAnnouncement] = useState("");
-  const { announcement_id } = announcementID;
   const access_token = localStorage.getItem("access_token");
 
   const toggleModal = () => {
@@ -16,7 +15,7 @@ const EditAnnouncementModal = ({ announcementID }) => {
   const handleUpdate = async () => {
     try {
       // Call putAnnouncementID method with the announcement ID and updated announcement text
-      await apiService.putAnnouncementID(announcement_id, updatedAnnouncement, access_token);
+      await apiService.putAnnouncementID(announcementID, updatedAnnouncement, access_token);
       // Close the modal after successful update
       toggleModal();
       // Optionally, you can handle any success feedback here
