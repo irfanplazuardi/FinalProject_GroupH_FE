@@ -1,6 +1,5 @@
 import React from "react";
 import EditTeacherModal from "../modals/edit_teacher";
-import DeleteModal from "../modals/delete_course";
 
 const TeacherListTable = () => {
   return (
@@ -25,21 +24,13 @@ const TeacherListTable = () => {
             <td className="border border-black px-4 py-2">08543671</td>
             <td className="border border-black px-4 py-2">rudi@gmail.com</td>
             <td className="border border-black px-4 py-2">
-              <img
-                src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109"
-                alt="avatar"
-              />
+              <img src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109" alt="avatar" />
             </td>
-            <td className="border border-black px-4 py-2">
-              2022-01-01 00:00:00
-            </td>
-            <td className="border border-black px-4 py-2">
-              2022-01-01 00:00:00
-            </td>
+            <td className="border border-black px-4 py-2">2022-01-01 00:00:00</td>
+            <td className="border border-black px-4 py-2">2022-01-01 00:00:00</td>
             <td className="border border-black px-4 py-2  ">
               <div className="flex justify-center ">
                 <EditTeacherModal />
-                <DeleteModal />
               </div>
             </td>
           </tr>

@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import apiService from "../../api/api_service";
 
-const DeleteModal = ({ courseInfo, onDelete, onCancel }) => {
+const DeleteAnnouncement = ({ announcementID }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const access_token = localStorage.getItem("access_token");
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
   const handleDelete = () => {
-    // onDelete(courseInfo); // Pass courseInfo to parent component for deletion
+    apiService
+      .deleteAnnouncementID(announcementID, access_token)
+      .then(() => {
+        toggleModal();
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error deleting course:", error);
+      });
     toggleModal();
   };
 
@@ -66,4 +76,4 @@ const DeleteModal = ({ courseInfo, onDelete, onCancel }) => {
   );
 };
 
-export default DeleteModal;
+export default DeleteAnnouncement;

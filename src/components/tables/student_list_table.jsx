@@ -1,9 +1,9 @@
 import React from "react";
 import EditStudentModal from "../modals/edit_student";
-import DeleteModal from "../modals/delete_course";
 
 const StudentListTable = () => {
   return (
+
     <div>
       <table className="border border-black m-10 dark:border-white">
         <thead>
@@ -19,6 +19,7 @@ const StudentListTable = () => {
           </tr>
         </thead>
         <tbody>
+
           <tr className="bg-white dark:bg-slate-400">
             <td className="border border-black px-4 py-2">1</td>
             <td className="border border-black px-4 py-2">Bambang</td>

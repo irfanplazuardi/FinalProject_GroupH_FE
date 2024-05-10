@@ -8,7 +8,6 @@ const api = axios.create({
 });
 
 const apiService = {
-
   async getUserData(access_token, role, user_id) {
     try {
       const response = await api.get(`/${role}s/${user_id}`, {
@@ -102,14 +101,16 @@ const apiService = {
       throw error;
     }
   },
-
-  async getProfileData() {
+  
+  async deleteAnnouncementID(announcement_id, access_token) {
     try {
-      const response = await api.get(`/${role}s/${user_id}`, {
+      const response = await api.delete(`/announcement/${announcement_id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          Authorization: `Bearer ${access_token}`,
         },
       });
+      return response.data;
+
     } catch (error) {
       console.error("API Error:", error);
       throw error;
