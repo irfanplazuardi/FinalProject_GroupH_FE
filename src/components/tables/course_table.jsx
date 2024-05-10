@@ -3,6 +3,7 @@ import apiService from "../../api/api_service";
 import Container from "../container";
 import AddCourseModal from "../modals/create_course";
 import EditCourseModal from "../modals/edit_course";
+import DeleteCourse from "../modals/delete_course";
 
 const CourseTable = () => {
   const [courses, setCourses] = useState([]);
@@ -60,21 +61,11 @@ const CourseTable = () => {
                     alt="avatar"
                   />
                 </td>
-                <td className="border border-black px-4 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laboriosam, accusamus!
-                </td>
-                <td className="border border-black px-4 py-2">
-                  2022-01-01 00:00:00
-                </td>
-                <td className="border border-black px-4 py-2">
-                  2022-01-01 00:00:00
-                </td>
                 <td className="border border-black px-4 py-2">{course.course_description}</td>
                 <td className="border border-black px-4 py-2  ">
                   <div className="flex justify-center ">
                     <EditCourseModal courseID={course.course_id}/>
-                    <DeleteModal />
+                    <DeleteCourse  courseID={course.course_id}/>
                   </div>
                 </td>
               </tr>
