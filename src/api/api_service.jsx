@@ -70,6 +70,41 @@ const apiService = {
       throw error;
     }
   },
+  
+  async getStudents(access_token) {
+    try {
+      console.log("access_token:", access_token);
+      const response = await api.get("/students", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async putStudentID(student_id, update_student_name, access_token) {
+    try {
+      const response = await api.put(
+        `/students/${student_id}`,
+        {
+          student_name: update_student_name 
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
 
   async postLogin(username, role, password) {
     try {
