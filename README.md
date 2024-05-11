@@ -52,9 +52,9 @@ Open [vogue school](https://dev--vogueschool-dev-env.netlify.app/)
    ![login](src/assets/readme/Login_Account.png)
    **Logout Account**
 
-5. Login or Register account
-6. in Dashboard page click on the logout button that is located on the bottom of the left sidebar
-7. Your account will be logout and redirect back to homepage
+1. Login or Register account
+2. in Dashboard page click on the logout button that is located on the bottom of the left sidebar
+3. Your account will be logout and redirect back to homepage
    ![logout](src/assets/readme/Logout_Account.png)
    **_nb: UI dashboard for role student and teacher will be sligtly different_**
    ![dashboard](src/assets/readme/Dashboard_Display.png)
