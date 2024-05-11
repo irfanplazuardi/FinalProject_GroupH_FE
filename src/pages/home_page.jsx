@@ -14,12 +14,12 @@ const Home_page = () => {
     <div className="min-h-screen bg-[#d9d9d9] ">
       <HomeNavbar />
       <Carousel />
-      <div className="flex flex-col justify-center items-center">
-        <div className="w-full md:w-2/3 text-justify text-3xl gap-x-10 mb-4 md:text-3xl sm:text-xl">
-          <h1 className="lg:text-5xl text-center my-10 md:text-4xl sm:text-xl">
+      <div className="flex flex-col lg:flex-row justify-center items-center">
+        <div className="w-full md:w-2/3 text-justify text-3xl gap-x-10 mb-4 md:text-3xl sm:text-xl lg:p-6">
+          <h1 className="font-semibold lg:text-5xl text-3xl text-center my-10 md:text-3xl sm:text-xl">
             Our Mission
           </h1>
-          <p>
+          <p className="text-2xl sm:text-xl md:text-2xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam qui
             aliquam commodi error provident, ipsum assumenda distinctio
             reprehenderit praesentium, magni architecto incidunt rem molestiae
@@ -30,12 +30,12 @@ const Home_page = () => {
           <img src={mission} alt="mission" className="w-full" />
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="lg:text-5xl text-center my-10 md:text-4xl sm:text-2xl">
-          Our Vision
-        </h1>
-        <div className="w-full md:w-2/3 text-justify text-3xl gap-x-10 mb-4 md:text-3xl sm:text-xl ">
-          <p>
+      <div className="flex flex-col lg:flex-row justify-center items-center">
+        <div className="w-full md:w-2/3 text-justify text-3xl gap-x-10 mb-4 md:text-3xl sm:text-xl lg:p-6">
+          <h1 className="font-semibold lg:text-5xl text-3xl text-center my-10 md:text-3xl sm:text-xl">
+            Our Vission
+          </h1>
+          <p className="text-2xl sm:text-xl md:text-2xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam qui
             aliquam commodi error provident, ipsum assumenda distinctio
             reprehenderit praesentium, magni architecto incidunt rem molestiae
@@ -43,15 +43,18 @@ const Home_page = () => {
           </p>
         </div>
         <div className="w-full md:w-1/3">
-          <img src={vision} alt="vision" className="w-full" />
+          <img src={vision} alt="mission" className="w-full" />
         </div>
       </div>
+
       <div>
-        <h1 className="text-5xl text-center my-20">What Our Students Says</h1>
+        <h1 className="font-semibold lg:text-5xl text-3xl text-center my-10 md:text-3xl sm:text-xl">
+          What Our Students Says
+        </h1>
       </div>
       <MultipleCard />
       <div className="bg-yellow-400">
-        <h1 className="text-5xl text-center mt-20 mb-10  pt-10">
+        <h1 className="font-semibold lg:text-5xl text-3xl text-center my-10 md:text-3xl sm:text-xl">
           Follow Our Social Media
         </h1>
         <div className="flex justify-center items-center space-x-20">
