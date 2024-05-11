@@ -15,7 +15,7 @@ const TeacherComponent = () => {
       .catch((error) => {
         console.error("Error fetching teacher data:", error);
       });
-  }, []);
+  }, []); // Empty dependency array means it runs only once after component mount
 
   return (
     <div>

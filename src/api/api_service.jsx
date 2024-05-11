@@ -8,7 +8,6 @@ const api = axios.create({
 });
 
 const apiService = {
-
   async getUserData(access_token, role, user_id) {
     try {
       const response = await api.get(`/${role}s/${user_id}`, {
@@ -16,6 +15,26 @@ const apiService = {
           Authorization: `Bearer ${access_token}`,
         },
       });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async putUserDataPhone(user_id, update_user, access_token) {
+    try {
+      const response = await api.put(
+        `/${update_user.role}s/${user_id}`,
+        {
+          phone: update_user,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error("API Error:", error);
@@ -71,6 +90,103 @@ const apiService = {
       throw error;
     }
   },
+  
+  async getStudents(access_token) {
+    try {
+      console.log("access_token:", access_token);
+      const response = await api.get("/students", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async putStudentID(student_id, update_student_name, update_student_phone, update_student_email, access_token) {
+    try {
+      const response = await api.put(
+        `/students/${student_id}`,
+        {
+          student_name: update_student_name, 
+          student_phone: update_student_phone, 
+          student_email: update_student_email 
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+  
+  async getTeachers(access_token) {
+    try {
+      console.log("access_token:", access_token);
+      const response = await api.get("/teachers", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async putTeacherID(teacher_id, update_teacher_name, update_teacher_phone, update_teacher_email, access_token) {
+    try {
+      const response = await api.put(
+        `/teachers/${teacher_id}`,
+        {
+          teacher_name: update_teacher_name, 
+          teacher_phone: update_teacher_phone, 
+          teacher_email: update_teacher_email 
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async putCourseID(course_id, update_course_name, update_course_grade, update_course_subject, update_course_desc, access_token) {
+    try {
+      const response = await api.put(
+        `/courses/${course_id}`,
+        {
+          course_name: update_course_name, 
+          course_grade: update_course_grade, 
+          course_subjects: update_course_subject, 
+          course_description: update_course_desc 
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
 
   async postLogin(username, role, password) {
     try {
@@ -97,6 +213,85 @@ const apiService = {
         picture: "None",
       });
       return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async deleteAnnouncementID(announcement_id, access_token) {
+    try {
+      const response = await api.delete(`/announcement/${announcement_id}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+
+  async postAnnouncement(announcement_desc, access_token) {
+    try {
+      const response = await api.post(
+        "/announcement",
+        {
+          announcement_desc: announcement_desc,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+  
+  async deleteCourseID(course_id, access_token) {
+    try {
+      const response = await api.delete(`/courses/${course_id}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+  
+  async deleteStudentID(student_id, access_token) {
+    try {
+      const response = await api.delete(`/students/${student_id}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
+  
+  async deleteTeacherID(teacher_id, access_token) {
+    try {
+      const response = await api.delete(`/teachers/${teacher_id}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      return response.data;
+
     } catch (error) {
       console.error("API Error:", error);
       throw error;

@@ -14,14 +14,11 @@ const EditAnnouncementModal = ({ announcementID }) => {
 
   const handleUpdate = async () => {
     try {
-      // Call putAnnouncementID method with the announcement ID and updated announcement text
       await apiService.putAnnouncementID(announcementID, updatedAnnouncement, access_token);
-      // Close the modal after successful update
       toggleModal();
-      // Optionally, you can handle any success feedback here
+      window.location.reload();
     } catch (error) {
       console.error("Error updating announcement:", error);
-      // Optionally, you can handle any error feedback here
     }
   };
 

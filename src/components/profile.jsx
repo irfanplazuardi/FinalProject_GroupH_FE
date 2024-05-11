@@ -63,7 +63,7 @@ const Profile = () => {
           {dataUser && (
             <>
               <div className="m-2 bg-white p-2 rounded-md">
-                <div className="font-bold mb-1 text-lg dark:text-gray-400">Name of {user_role === "student" ? "Student" : "Teacher"}</div>
+                <div className="font-bold mb-1 text-lg">Name of {user_role === "student" ? "Student" : "Teacher"}</div>
                 <div className="text-sm">{user_role === "teacher" ? dataUser.teacher_name : dataUser.student_name}</div>
               </div>
               <div className="m-2 bg-white p-2 rounded-md">

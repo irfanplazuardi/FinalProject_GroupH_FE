@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import apiService from "../../api/api_service";
 
-const DeleteCourse = ({ courseID }) => {
+const DeleteStudent = ({ studentID }) => {
   const [isOpen, setIsOpen] = useState(false);
   const access_token = localStorage.getItem("access_token");
 
@@ -13,7 +13,7 @@ const DeleteCourse = ({ courseID }) => {
 
   const handleDelete = () => {
     apiService
-      .deleteCourseID(courseID, access_token)
+      .deleteStudentID(studentID, access_token)
       .then(() => {
         toggleModal();
         window.location.reload();
@@ -120,4 +120,4 @@ const DeleteCourse = ({ courseID }) => {
   );
 };
 
-export default DeleteCourse;
+export default DeleteStudent;
