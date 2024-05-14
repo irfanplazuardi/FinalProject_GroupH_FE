@@ -10,7 +10,7 @@ export default function StudentDashboard() {
     <>
       <Sidebar />
       <Container className="lg:h-full xl:h-full p-4 sm:ml-64 bg-[#D9D9D9] dark:bg-slate-500 md:h-full sm:h-full">
-        <Container className="p-4 mb-4 flex justify-between items-center bg-white rounded-full dark:bg-slate-800 sticky top-3">
+        <Container className="p-4 mb-4 flex justify-between items-center bg-gray-400 rounded-full dark:bg-slate-800 sticky top-3">
           <Navbar />
         </Container>
         <Container className="sm:grid grid-cols-4 grid-rows-2 gap-4 mb-4 md:grid-cols-1 lg:grid-cols-4">

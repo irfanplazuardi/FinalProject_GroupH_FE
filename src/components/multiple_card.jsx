@@ -45,8 +45,14 @@ const data = [
 const Card = ({ imageUrl, description }) => {
   return (
     <div className="flex flex-col items-center border rounded-md p-10 m-5 bg-white hover:shadow-2xl cursor-pointer">
-      <img src={imageUrl} alt="Card" className="rounded-full w-40 h-40" />
-      <p className="mt-2 text-center text-xl">{description}</p>
+      <img
+        src={imageUrl}
+        alt="Card"
+        className="rounded-full w-30 h-30 md:w-20 md:h-20 sm:w-12 sm:h-12"
+      />
+      <p className="mt-2 text-center text-sm sm:text-sm sm:mt-3">
+        {description}
+      </p>
     </div>
   );
 };
@@ -64,7 +70,7 @@ const MultipleCardCarousel = () => {
   };
 
   return (
-    <div className="box-border w-[65rem] h-[30rem] bg-slate-200 px-12 py-10 shadow-2xl rounded-2xl m-auto">
+    <div className="box-border bg-slate-200 px-2 sm:p-7 py-4 shadow-2xl rounded-2xl m-auto">
       <div className="mx-auto max-w-3xl">
         <Slider {...settings}>
           {data.map((card) => (
