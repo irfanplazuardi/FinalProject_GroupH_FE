@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import apiService from "../../api/api_service";
 import Container from "../container";
 import AddCourseModal from "../modals/create_course";
@@ -23,7 +23,7 @@ const CourseTable = () => {
     <>
       <Container className="flex justify-between ">
         <Container className="flex gap-5">
-          <select className="flex justify-end py-3 px-4 rounded-2xl mb-5 bg-gray-300">
+          <select className="flex justify-end py-3 px-4 rounded-2xl mb-5 bg-gray-400">
             <option value="course"> Course</option>
             <option value="fisika">fisika</option>
             <option value="kimia">kimia</option>
@@ -51,24 +51,21 @@ const CourseTable = () => {
             <tbody>
               {courses.map((course) => (
                 <tr key={course.course_id} className="bg-white">
-                <td className="border border-black px-4 py-2">{course.course_id}</td>
-                <td className="border border-black px-4 py-2">{course.course_name}</td>
-                <td className="border border-black px-4 py-2">{course.course_subjects}</td>
-                <td className="border border-black px-4 py-2">{course.course_grade}</td>
-                <td className="border border-black px-4 py-2">
-                  <img
-                    src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109"
-                    alt="avatar"
-                  />
-                </td>
-                <td className="border border-black px-4 py-2">{course.course_description}</td>
-                <td className="border border-black px-4 py-2  ">
-                  <div className="flex justify-center ">
-                    <EditCourseModal courseID={course.course_id}/>
-                    <DeleteCourse  courseID={course.course_id}/>
-                  </div>
-                </td>
-              </tr>
+                  <td className="border border-black px-4 py-2">{course.course_id}</td>
+                  <td className="border border-black px-4 py-2">{course.course_name}</td>
+                  <td className="border border-black px-4 py-2">{course.course_subjects}</td>
+                  <td className="border border-black px-4 py-2">{course.course_grade}</td>
+                  <td className="border border-black px-4 py-2">
+                    <img src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109" alt="avatar" />
+                  </td>
+                  <td className="border border-black px-4 py-2">{course.course_description}</td>
+                  <td className="border border-black px-4 py-2  ">
+                    <div className="flex justify-center ">
+                      <EditCourseModal courseID={course.course_id} />
+                      <DeleteCourse courseID={course.course_id} />
+                    </div>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>
