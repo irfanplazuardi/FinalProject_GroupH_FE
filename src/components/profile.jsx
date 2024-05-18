@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ButtonStyle from "./button";
 import PopUpWindow from "./pop_up_window/pop_up_window";
 import apiService from "../api/api_service";
+import EditProfileModal from "./modals/edit_profile";
 
 const Profile = () => {
   const user_role = localStorage.getItem("role");
@@ -43,7 +44,6 @@ const Profile = () => {
     }
     setSelectedField(null);
   };
-
   const changePicture = [{ name: "picture", label: "Upload", type: "file" }];
   const phoneNumberField = [{ name: "phoneNumber", label: "New Phone Number", type: "text" }];
   const emailField = [{ name: "email", label: "New Email", type: "email" }];
@@ -75,44 +75,28 @@ const Profile = () => {
                   <div className="font-bold mb-1 text-lg">Phone Number:</div>
                   <div className="text-sm">{dataUser.phone}</div>
                 </div>
-                <ButtonStyle widthButton="24" onClick={() => setSelectedField("phoneNumber")}>
-                  Change
-                </ButtonStyle>
+                <EditProfileModal title={"Phone Number"} fieldName={"phone"} />
               </div>
               <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
                 <div className="gap-2">
                   <div className="font-bold mb-1 text-lg">Email:</div>
                   <div className="text-sm">{user_role === "teacher" ? dataUser.teacher_email : dataUser.student_email}</div>
                 </div>
-                <ButtonStyle widthButton="24" onClick={() => setSelectedField("email")}>
-                  Change
-                </ButtonStyle>
+                <EditProfileModal title={"Email"} fieldName={`${user_role}_email`} />
               </div>
               <div className="m-2 bg-white p-2 rounded-md flex justify-between items-center">
                 <div>
                   <div className="font-bold mb-1 text-lg">Password:</div>
                   <div className="text-sm">********</div>
                 </div>
-                <ButtonStyle widthButton="24" onClick={() => setSelectedField("password")}>
-                  Change
-                </ButtonStyle>
+                <EditProfileModal title={"Password"} fieldName={"password"} />
               </div>
             </>
           )}
         </div>
       </div>
-      {/* Pop-up windows for editing profile fields */}
       {isSelectedField === "picture" && (
         <PopUpWindow isOpen={true} onClose={() => setSelectedField(null)} onSubmit={handleSubmit} title="Change Profile Picture" validationText="Are you sure want to change your profile picture?" buttonLeft="Yes" fields={changePicture} />
-      )}
-      {isSelectedField === "phoneNumber" && (
-        <PopUpWindow isOpen={true} onClose={() => setSelectedField(null)} onSubmit={handleSubmit} title="Change Phone Number" validationText="Are you sure want to change your phone number?" buttonLeft="Yes" fields={phoneNumberField} />
-      )}
-      {isSelectedField === "email" && (
-        <PopUpWindow isOpen={true} onClose={() => setSelectedField(null)} onSubmit={handleSubmit} title="Change Email" validationText="Are you sure want to change your email?" buttonLeft="Yes" fields={emailField} />
-      )}
-      {isSelectedField === "password" && (
-        <PopUpWindow isOpen={true} onClose={() => setSelectedField(null)} onSubmit={handleSubmit} title="Change Password" validationText="Are you sure want to change your password?" buttonLeft="Yes" fields={passwordField} />
       )}
     </div>
   );
