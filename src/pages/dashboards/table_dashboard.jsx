@@ -8,8 +8,8 @@ const TableDashboard = () => {
   return (
     <>
       <Sidebar />
-      <Container className="h-screen p-4 sm:ml-64 bg-white dark:bg-slate-500">
-        <Container className="p-4 mb-4 flex justify-between items-center bg-white rounded-full dark:bg-slate-800 sticky top-3">
+      <Container className="h-screen p-4 sm:ml-64 bg-[#D9D9D9] dark:bg-slate-500">
+        <Container className="p-4 mb-4 flex justify-between items-center bg-gray-400 rounded-full dark:bg-slate-800 sticky top-3">
           <Navbar />
         </Container>
         <Outlet />

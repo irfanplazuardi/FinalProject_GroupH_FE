@@ -22,12 +22,12 @@ const apiService = {
     }
   },
 
-  async putUserDataPhone(user_id, update_user, access_token) {
+  async putUserData(role, user_id, section, value, access_token) {
     try {
       const response = await api.put(
-        `/${update_user.role}s/${user_id}`,
+        `/${role}s/${user_id}`,
         {
-          phone: update_user,
+          [section]: value,
         },
         {
           headers: {
@@ -78,7 +78,6 @@ const apiService = {
 
   async getCourses(access_token) {
     try {
-      console.log("access_token:", access_token);
       const response = await api.get("/courses", {
         headers: {
           Authorization: `Bearer ${access_token}`,
@@ -90,10 +89,32 @@ const apiService = {
       throw error;
     }
   },
-  
+
+  async postNewUser(role, access_token, name, email, birthday, phone, password) {
+    try {
+      const response = await api.post(
+        `/${role}s`,
+        {
+          [`${role}_name`]: name,
+          [`${role}_email`]: email,
+          [`${role}_birthday`]: birthday,
+          phone: phone,
+          password: password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  },
   async getStudents(access_token) {
     try {
-      console.log("access_token:", access_token);
       const response = await api.get("/students", {
         headers: {
           Authorization: `Bearer ${access_token}`,
@@ -111,9 +132,9 @@ const apiService = {
       const response = await api.put(
         `/students/${student_id}`,
         {
-          student_name: update_student_name, 
-          student_phone: update_student_phone, 
-          student_email: update_student_email 
+          student_name: update_student_name,
+          phone: update_student_phone,
+          student_email: update_student_email,
         },
         {
           headers: {
@@ -127,10 +148,9 @@ const apiService = {
       throw error;
     }
   },
-  
+
   async getTeachers(access_token) {
     try {
-      console.log("access_token:", access_token);
       const response = await api.get("/teachers", {
         headers: {
           Authorization: `Bearer ${access_token}`,
@@ -148,9 +168,9 @@ const apiService = {
       const response = await api.put(
         `/teachers/${teacher_id}`,
         {
-          teacher_name: update_teacher_name, 
-          teacher_phone: update_teacher_phone, 
-          teacher_email: update_teacher_email 
+          teacher_name: update_teacher_name,
+          phone: update_teacher_phone,
+          teacher_email: update_teacher_email,
         },
         {
           headers: {
@@ -170,10 +190,10 @@ const apiService = {
       const response = await api.put(
         `/courses/${course_id}`,
         {
-          course_name: update_course_name, 
-          course_grade: update_course_grade, 
-          course_subjects: update_course_subject, 
-          course_description: update_course_desc 
+          course_name: update_course_name,
+          course_grade: update_course_grade,
+          course_subjects: update_course_subject,
+          course_description: update_course_desc,
         },
         {
           headers: {
@@ -252,7 +272,7 @@ const apiService = {
       throw error;
     }
   },
-  
+
   async deleteCourseID(course_id, access_token) {
     try {
       const response = await api.delete(`/courses/${course_id}`, {
@@ -261,13 +281,12 @@ const apiService = {
         },
       });
       return response.data;
-
     } catch (error) {
       console.error("API Error:", error);
       throw error;
     }
   },
-  
+
   async deleteStudentID(student_id, access_token) {
     try {
       const response = await api.delete(`/students/${student_id}`, {
@@ -276,13 +295,12 @@ const apiService = {
         },
       });
       return response.data;
-
     } catch (error) {
       console.error("API Error:", error);
       throw error;
     }
   },
-  
+
   async deleteTeacherID(teacher_id, access_token) {
     try {
       const response = await api.delete(`/teachers/${teacher_id}`, {
@@ -291,7 +309,6 @@ const apiService = {
         },
       });
       return response.data;
-
     } catch (error) {
       console.error("API Error:", error);
       throw error;

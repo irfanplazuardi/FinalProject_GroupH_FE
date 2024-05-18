@@ -32,7 +32,7 @@ const AddCourseModal = () => {
 
   return (
     <>
-      <button className="bg-gray-300 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-3xl w-35 h-10" onClick={toggleModal} title="Add course">
+      <button className="bg-gray-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-3xl w-35 h-10" onClick={toggleModal} title="Add course">
         Create
         <span className="ml-5 text-orange-500">
           <FontAwesomeIcon icon={faPlus} />
