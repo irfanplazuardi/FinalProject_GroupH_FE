@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FormControl, InputLabel, MenuItem, Select, Button } from "@mui/material";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import apiService from "../../api/api_service";
 
 const AddCourseModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,15 +11,27 @@ const AddCourseModal = () => {
     courseName: "",
     subject: "",
     grade: "",
-    picture: "",
+    picture: null,
     description: "",
   });
+  const [subjects, setSubjects] = useState([]);
+  const access_token = localStorage.getItem("access_token");
 
+  useEffect(() => {
+    apiService
+      .getCourseSubject(access_token)
+      .then((data) => {
+        setSubjects(data.course_subjects);
+      })
+      .catch((error) => {
+        console.error("Error fetching announcements:", error);
+      });
+  }, []);
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const { name, value } = event.target;
     setCourseInfo((prevCourseInfo) => ({
       ...prevCourseInfo,
@@ -24,16 +39,22 @@ const AddCourseModal = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Course Info:", courseInfo);
+    try {
+      const response = await apiService.postCourse(access_token, courseInfo.courseName, courseInfo.subject, courseInfo.grade, courseInfo.description);
+      console.log("Response: ", response);
+    } catch (error) {
+      console.error("API Error:", error);
+    }
     toggleModal();
+    window.location.reload();
   };
 
   return (
     <>
       <button className="bg-gray-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-3xl w-35 h-10" onClick={toggleModal} title="Add course">
-        Create
+        Course
         <span className="ml-5 text-orange-500">
           <FontAwesomeIcon icon={faPlus} />
         </span>
@@ -45,23 +66,43 @@ const AddCourseModal = () => {
               <div className="col-span-4 row-span-1">
                 <h2 className="text-xl font-bold">Create Course</h2>
               </div>
-
               <div className="col-span-1 row-span-5 flex flex-col justify-between gap-4">
                 <div className="flex flex-col">
                   <label className="text-ml">Course Name</label>
                   <input type="text" name="courseName" value={courseInfo.courseName} onChange={handleChange} placeholder="Maths" className="w-[30vh] p-2 border border-gray-300 bg-gray-200 rounded-lg" required />
                 </div>
                 <div className="flex flex-col">
-                  <label className="text-ml">Subject</label>
-                  <input type="text" name="subject" value={courseInfo.subject} onChange={handleChange} placeholder="Aljabar" className="w-[30vh] p-2 border border-gray-300 bg-gray-200 rounded-lg " required />
+                  <label className="text-ml mb-2">Subject</label>
+                  <FormControl size="small" className="w-[30vh] p-2 border border-gray-300 bg-gray-200 rounded-lg">
+                    <InputLabel id="demo-select-small-label">Select Subject</InputLabel>
+                    <Select name="subject" value={courseInfo.subject} label="subject" onChange={handleChange}>
+                      {subjects.map((subject) => (
+                        <MenuItem key={subject.course_subject_id} value={subject.course_subject_id}>
+                          {subject.course_subject}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 </div>
                 <div className="flex flex-col">
                   <label className="text-ml">Grade</label>
-                  <input type="text" name="grade" value={courseInfo.grade} onChange={handleChange} placeholder="SMA " className="w-[30vh] p-2 border border-gray-300 bg-gray-200 rounded-lg " required />
+                  <FormControl size="small" className="w-[30vh] p-2 border border-gray-300 bg-gray-200 rounded-lg">
+                    <InputLabel id="seslect-grade">Select Grade</InputLabel>
+                    <Select name="grade" value={courseInfo.grade} label="grade" onChange={handleChange}>
+                      <MenuItem value="SD">SD</MenuItem>
+                      <MenuItem value="SMP">SMP</MenuItem>
+                      <MenuItem value="SMA">SMA</MenuItem>
+                    </Select>
+                  </FormControl>
                 </div>
                 <div className="flex flex-col">
                   <label className="text-ml">Upload Image</label>
-                  <input type="file" name="picture" value={courseInfo.picture} onChange={handleChange} placeholder="Picture" className="w-[30vh] h-[20vh] p-2 border border-gray-300 bg-gray-200 rounded-lg " required />
+                  <div className="w-[30vh] h-[30vh] p-2 border border-gray-300 bg-gray-200 rounded-lg flex items-center justify-center">
+                    <Button component="label" role={undefined} variant="contained" tabIndex={-1} startIcon={<AiOutlineCloudUpload />} aria-disabled>
+                      Upload file
+                      <input type="file" name="picture" onChange={handleChange} hidden />
+                    </Button>
+                  </div>
                 </div>
               </div>
 

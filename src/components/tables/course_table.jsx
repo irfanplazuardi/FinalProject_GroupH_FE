@@ -30,7 +30,8 @@ const CourseTable = () => {
             <option value="biologi">biologi</option>
           </select>
         </Container>
-        <Container className="mx-2">
+        <Container className="mx-2 flex gap-4">
+          <AddCourseModal />
           <AddCourseModal />
         </Container>
       </Container>
