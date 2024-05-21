@@ -18,8 +18,12 @@ const EditTeacherModal = ({ teacherID }) => {
 
   const handleUpdate = async (event) => {
     event.preventDefault();
+    const updated_fields = {};
+    if (updatedTeacher.teacherName) updated_fields.teacher_name = updatedTeacher.teacherName;
+    if (updatedTeacher.teacherPhone) updated_fields.phone = updatedTeacher.teacherPhone;
+    if (updatedTeacher.teacherEmail) updated_fields.teacher_email = updatedTeacher.teacherEmail;
     try {
-      await apiService.putTeacherID(teacherID, updatedTeacher.teacherName, updatedTeacher.teacherPhone, updatedTeacher.teacherEmail, access_token);
+      await apiService.putTeacherID(teacherID, updated_fields, access_token);
       toggleModal();
       window.location.reload();
     } catch (error) {
@@ -48,15 +52,15 @@ const EditTeacherModal = ({ teacherID }) => {
               <div className="flex flex-col justify-center justify-center items-center gap-5">
                 <div className="flex flex-col justify-center ">
                   <label className="text-ml">Teacher Name</label>
-                  <input type="text" name="teacherName" value={updatedTeacher.teacherName} onChange={handleChange} placeholder="Samuel" className="w-[40vw] p-1 border border-gray-300 bg-gray-200  rounded-lg" required />
+                  <input type="text" name="teacherName" value={updatedTeacher.teacherName} onChange={handleChange} placeholder="Samuel" className="w-[40vw] p-1 border border-gray-300 bg-gray-200  rounded-lg" />
                 </div>
                 <div className="flex flex-col justify-center">
                   <label className="text-ml">Teacher Phone</label>
-                  <input type="text" name="teacherPhone" value={updatedTeacher.teacherPhone} onChange={handleChange} placeholder="0815261512" className="w-[40vw] p-1 border border-gray-300 bg-gray-200 rounded-lg " required />
+                  <input type="text" name="teacherPhone" value={updatedTeacher.teacherPhone} onChange={handleChange} placeholder="0815261512" className="w-[40vw] p-1 border border-gray-300 bg-gray-200 rounded-lg " />
                 </div>
                 <div className="flex flex-col justify-center">
                   <label className="text-ml">Teacher Email</label>
-                  <input type="text" name="teacherEmail" value={updatedTeacher.teacherEmail} onChange={handleChange} placeholder="teacher@gmail.com " className="w-[40vw] p-1 border border-gray-300 bg-gray-200 rounded-lg " required />
+                  <input type="text" name="teacherEmail" value={updatedTeacher.teacherEmail} onChange={handleChange} placeholder="teacher@gmail.com " className="w-[40vw] p-1 border border-gray-300 bg-gray-200 rounded-lg " />
                 </div>
               </div>
               <div className="flex justify-center items-center mt-10">
